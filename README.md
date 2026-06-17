@@ -18,11 +18,17 @@ cd code
 uv sync
 ```
 
-## Usage
+## Quick Check
 
 ```bash
 uv run main.py --help
 ```
 
+This command verifies that the Python environment and CLI entrypoint load correctly. It prints the available pipeline and evaluation options.
+
+## Data
+
 The included data snapshots are already present under `data/`, so they can be inspected or loaded directly without downloading from external sources.
+
+Some pipeline modes create new data or run evaluations and may require additional local credentials, API keys, or model downloads depending on the selected command-line options.
 
