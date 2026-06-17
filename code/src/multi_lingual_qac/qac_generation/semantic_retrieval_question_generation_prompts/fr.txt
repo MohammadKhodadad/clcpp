@@ -1,0 +1,72 @@
+Vous êtes un expert dans la création de questions de recherche sémantique pour des documents de chimie et de brevets.
+
+Le contexte source peut être dans n'importe quelle langue. Les questions et les réponses DOIVENT être rédigées en français. Conservez les noms chimiques, les identifiants de composés (p. ex. « Compound 3a »), les noms commerciaux, les abréviations de réactifs, et toutes les valeurs numériques, unités et plages dans leur forme d'origine — ne les traduisez pas, ne les arrondissez pas et ne les reformatez pas.
+
+Générez exactement TROIS paires question-réponse à partir du contexte. Les questions doivent cibler les concepts, problèmes, approches ou applications du passage — et non extraire des faits isolés. Chaque question doit se lire comme celle d'un utilisateur cherchant ce type de document sans connaître à l'avance la terminologie exacte qui y est employée.
+
+RÈGLES FONDAMENTALES :
+- Cadrage conceptuel : Chaque question porte sur un concept, un problème, une approche, un cas d'usage ou une capacité discutés dans le passage — et non sur un point de donnée étroit comme une valeur de température ou un nom de réactif.
+- Distance lexicale : Paraphrasez activement. Un moteur de recherche sémantique doit associer la question au passage par le sens, non par le recouvrement de mots-clés. Évitez de réutiliser le vocabulaire distinctif du passage lorsqu'un synonyme ou une paraphrase naturelle convient. Exception : les noms propres, identifiants de composés, noms commerciaux et noms chimiques/techniques standardisés (p. ex. « Pd/C », « Compound 3a », noms spécifiques de polymères) doivent rester tels quels — sinon la question devient impossible à répondre depuis n'importe quel document.
+- Réponse ancrée : Même si la question est conceptuelle, la réponse doit être un segment court et continu tiré du passage qui répond directement à la question. Si vous ne pouvez pas pointer vers un segment du passage qui répond à la question, écartez-la. La réponse est la preuve que ce passage est la bonne correspondance.
+- Réalisme de recherche : Rédigez chaque question comme la formulerait quelqu'un qui cherche un document comme celui-ci mais ne l'a pas encore lu. Il sait ce qu'il veut trouver ; il ne connaît pas la formulation exacte utilisée par le document.
+- Pas de formules documentaires : N'utilisez jamais « décrit dans l'invention », « selon le texte », « mentionné dans la divulgation » ou similaire. La question ne doit pas révéler qu'un document spécifique est référencé.
+- Requête autonome pour un moteur de recherche (aucune référence au document) : chaque question est une requête pour un système de recherche d'information (RI) — la personne qui la tape n'a PAS vu ce document et cherche à le TROUVER. Ne faites jamais référence au document ni à son contenu : ni les formules explicites (« décrit dans l'invention », « selon le texte », « dans le passage »), ni AUCUNE formulation présupposant que le lecteur a le document sous les yeux — « l'exemple donné », « l'approche mentionnée/décrite/divulguée ici », « quelle méthode est fournie ». Rédigez des questions autonomes. Mauvais : « Quel exemple d'agent est donné qui augmente les ROS ? » → Bon : « Quel agent augmente les ROS ? »
+- Intention unique : Chaque question a un seul objectif informationnel clair. Il est acceptable que l'objectif soit plus large qu'un fait unique (p. ex. « comment X aborde-t-il Y »), mais elle ne doit pas regrouper plusieurs demandes sans lien.
+- Diversité : Les trois questions doivent cibler trois aspects distinguables du passage. Couvrez au moins deux des cadrages suivants :
+  1. Cadrage-problème : quel défi ou quelle limitation le passage aborde-t-il ?
+  2. Cadrage-solution : quelle approche, mécanisme ou méthode est proposé ?
+  3. Cadrage-application : quel cas d'usage, scénario ou capacité le passage permet-il ?
+
+Des questions conceptuelles plus larges sur l'approche globale sont acceptables tant que le passage y répond clairement et directement dans un segment continu.
+
+EXEMPLES :
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good (application-framed, paraphrased): "How can an engine reduce fuel consumption by generating part of its own combustion inputs?"
+  → Captures the passage's core concept. Uses "generating part of its own combustion inputs" instead of lifting "electrolysis" and "combustion chamber." The answer points to the drive arrangement producing oxygen, hydrogen, and water vapor and feeding them into the combustion chamber.
+
+✓ Good (solution-framed, paraphrased): "What role does on-board electrolysis play in supplying reactants to an engine?"
+  → "Electrolysis" is a technical term that stays; "supplying reactants to an engine" paraphrases what the passage calls "ihtiyaç duyduğu kimyasal unsurlardan ... yanma odasına ... verilebilir."
+
+✗ Bad (too extractive, keyword-heavy): "What temperature range is maintained for the electrolyte during electrolysis?"
+  → This is a fact-extraction question, not a semantic retrieval question. Belongs to the technical prompt, not this one.
+
+✗ Bad (ungrounded conceptual): "What are the environmental benefits of this fuel-saving approach?"
+  → Sounds like a retrieval question, but the passage does not discuss environmental benefits. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good (problem-framed, paraphrased): "How can organizations with multiple drinking water sites know when filters need servicing?"
+  → Captures the problem the passage addresses using natural search wording. Avoids lifting "consommable" or "actions de maintenance." Answer points to the sensor alerting the user when maintenance is required.
+
+✓ Good (application-framed): "Can IoT sensors monitor point-of-use water filters across many locations?"
+  → "IoT sensors" paraphrases "capteur connecté à Internet." "Point-of-use water filters" is a reused standard term (acceptable — it's the established English equivalent of "filtres de point d'utilisation"). Answer grounded in the passage's description of the monitoring system.
+
+✗ Bad (too extractive): "What does the sensor measure in the decentralized water treatment system?"
+  → Fact-extraction. Belongs to the technical prompt.
+
+✗ Bad (keyword-lifted): "What is a decentralized water treatment monitoring system connected to a network?"
+  → Near-verbatim reuse of the passage's opening phrase. Would match via keyword overlap, defeating the purpose of semantic retrieval.
+
+AUTO-VÉRIFICATION pour chaque question avant de la finaliser :
+- La question porte-t-elle sur un concept, un problème, une approche ou une application — plutôt que sur un fait extrait unique ?
+- Le vocabulaire de la question est-il significativement différent de celui du passage, tout en préservant le sens ? (Termes techniques standards et noms propres exemptés.)
+- Puis-je pointer vers un segment continu du passage qui y répond directement ? Sinon, écartez.
+- Quelqu'un cherchant un document comme celui-ci taperait-il plausiblement cette requête sans l'avoir lu auparavant ?
+- Quelqu'un qui n'a jamais vu ce document pourrait-il taper cette question dans un moteur de recherche ? Elle ne doit pas faire référence au document, à un « exemple donné », ni à quoi que ce soit qui y est « mentionné/décrit ».
+- Les trois questions couvrent-elles au moins deux cadrages (problème / solution / application) ?
+
+SORTIE (JSON valide uniquement, pas de markdown) :
+[
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."}
+]
+- answer : un segment court et continu tiré du passage qui répond directement à la question. Aussi court que possible tout en répondant entièrement à la question. Dans la langue de la question (français).
+- framing : l'un de problem, solution, application.
+Le même passage existe dans différentes langues. Cela ne devrait pas influencer votre langue cible pour les questions et les réponses. Elles sont déclarées ci-dessus. Voici les passages :

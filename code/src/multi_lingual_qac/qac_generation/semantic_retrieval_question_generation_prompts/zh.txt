@@ -1,0 +1,81 @@
+您是为化学和专利文献撰写语义检索问题的专家。
+
+源上下文可以是任何语言。问题和答案必须用中文（简体中文）撰写。请保留化学名称、化合物标识符（例如 "Compound 3a"）、商品名、试剂缩写以及所有数值、单位和范围的原始形式 —— 不要翻译、四舍五入或重新格式化它们。
+
+请从上下文中生成恰好三对问答。问题应针对段落中的概念、问题、方法或应用 —— 而不是提取孤立的事实。每个问题读起来都应像一位用户在搜索此类文档，且尚不了解文档内部所使用的确切术语。
+
+核心规则：
+
+- 概念框定：每个问题应询问段落中讨论的某一概念、问题、方法、用例或能力 —— 而不是单一狭窄的数据点（例如温度值或试剂名称）。
+
+- 词汇距离：积极使用同义改写。语义检索器应根据语义而非关键词重叠将问题与段落匹配。当存在自然的同义词或改写表达时，避免重复使用段落中的特征性词汇。例外：专有名词、化合物标识符、商品名以及标准化的化学/技术名称（例如 "Pd/C"、"Compound 3a"、特定聚合物名称）必须保持原样 —— 否则问题将无法从任何文档中得到回答。
+
+- 关于翻译技术术语：当存在便利且通顺的中文译法时（例如"催化剂"、"溶剂"、"电解槽"、"反应釜"、"产率"等），可以使用中文译法。但当某个技术术语没有公认、明确、常用的中文等价表达，或翻译会引入歧义时，则保留原始（通常为英文）术语，不要强行翻译。在保留原文与使用译文之间，请优先选择不会产生歧义的形式。
+
+- 有据答案：即使问题是概念性的，答案也必须是段落中直接回答该问题的一个简短连续片段。如果无法在段落中指出能回答该问题的片段，则丢弃该问题。答案是证明该段落为正确匹配的证据。
+
+- 检索真实感：以一个尚未阅读、但正在搜索此类文档的用户的口吻撰写每个问题。他们知道想找什么；但不知道文档使用的确切措辞。
+
+- 不要使用文档套语：绝不使用"本发明所述"、"根据本文"、"在公开内容中提及"或类似表达。问题中不应暗示正在引用某一特定文档。
+- 面向搜索引擎的独立查询（不得引用文档）：每个问题都是面向信息检索（IR）系统的查询 —— 输入它的人尚未看过本文档，正在搜索以"找到"它。绝不能引用该文档或其内容：既不能使用显式套语（"本发明所述""根据本文""在段落中"），也不能使用任何预设读者正在看着该文档的措辞 —— 例如"所给的示例""此处提及/描述/公开的方法""提供了哪种方法"。请撰写能独立成立的问题。差："给出了哪种可提高 ROS 的试剂示例？" → 好："哪种试剂可提高 ROS？"
+
+- 单一意图：每个问题有一个明确的信息目标。目标可以比单一事实更宽泛（例如"X 如何解决 Y"），但不应捆绑多个不相关的诉求。
+
+- 多样性：三个问题必须针对段落的三个可区分方面。请至少覆盖以下两种框定方式：
+  1. 问题导向：段落要解决的挑战或局限是什么？
+  2. 方案导向：提出了什么方法、机理或途径？
+  3. 应用导向：段落使能了哪些用例、场景或能力？
+
+只要段落能在一个连续片段中直接、明确地回答，关于整体方法的更宽泛的概念性问题也是可以接受的。
+
+示例：
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good (application-framed, paraphrased): "发动机如何通过自行生成部分燃烧所需输入物来降低燃料消耗？"
+  → 抓住段落核心概念。用"自行生成部分燃烧所需输入物"代替直接照搬"电解"和"燃烧室"。答案指向产生氧气、氢气和水蒸气并送入燃烧室的驱动装置。
+
+✓ Good (solution-framed, paraphrased): "车载电解在向发动机供应反应物方面起到什么作用？"
+  → "电解"是保留的技术术语；"向发动机供应反应物"对段落中"ihtiyaç duyduğu kimyasal unsurlardan ... yanma odasına ... verilebilir" 进行了改写。
+
+✗ Bad (too extractive, keyword-heavy): "电解过程中电解液维持在什么温度范围？"
+  → 这是事实抽取问题，不是语义检索问题。属于技术 prompt，而非本 prompt。
+
+✗ Bad (ungrounded conceptual): "这种节能方案的环境效益是什么？"
+  → 听上去像检索问题，但段落并未讨论环境效益。丢弃。
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good (problem-framed, paraphrased): "拥有多个饮用水站点的组织如何知道何时需要更换或维护过滤器？"
+  → 用自然的搜索措辞描述段落要解决的问题。避免直接照搬"consommable"或"actions de maintenance"。答案指向传感器在需要维护时向用户告警。
+
+✓ Good (application-framed): "IoT 传感器能否跨多个地点监控 point-of-use 水过滤器？"
+  → "IoT 传感器"对应"capteur connecté à Internet"。"point-of-use 水过滤器"是公认的标准术语保留 —— 中文领域常见做法保留英文术语以避免歧义。答案与段落对监控系统的描述相一致。
+
+✗ Bad (too extractive): "传感器在分布式水处理系统中测量什么？"
+  → 事实抽取。属于技术 prompt。
+
+✗ Bad (keyword-lifted): "什么是连接到网络的分布式水处理监控系统？"
+  → 几乎逐字重复段落开头。会通过关键词重叠匹配，违背语义检索的初衷。
+
+每个问题最终确认前的自检：
+- 问题是否针对一个概念、问题、方法或应用 —— 而不是单一抽取的事实？
+- 问题的词汇是否在保留含义的同时与段落明显不同？（标准技术术语和专有名词除外。）
+- 我能否指向段落中直接回答它的一个连续片段？如果不能，丢弃。
+- 一个尚未阅读但正在搜索此类文档的用户，是否会合理地输入这一查询？
+- 一个从未看过本文档的人，是否能把这个问题输入搜索引擎？它不得引用该文档、某个"所给示例"，或文档中"提及/描述"的任何内容。
+- 三个问题是否至少覆盖两种框定方式（问题 / 方案 / 应用）？
+
+输出（只输出有效 JSON，不要 markdown）：
+[
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."}
+]
+- answer：段落中直接回答问题的一个简短连续片段。在完整回答问题的前提下尽量简短。使用问题所用语言（中文）。
+- framing：problem、solution、application 之一。
+同一段落以不同语言存在。这不应影响您撰写问题和答案的目标语言。目标语言已在上方声明。以下是各段落：

@@ -1,0 +1,73 @@
+You are an expert at creating technical chemistry and patent retrieval questions whose answer is a specific chemical concept.
+
+You are given a CONCEPT (a specific chemical entity, identified by its name and a list of its aliases) and one or more patent passages (in any language) that mention this concept.
+
+The question MUST be written in English. Preserve chemical identifiers, trade names, reagent abbreviations, and all numerical values, units, and ranges in their original form — do not translate, round, or reformat them.
+
+YOUR TASK: Write EXACTLY ONE question whose ANSWER is the concept itself. A chemist who does not already know the concept's name must be able to read your question and answer it with this specific concept, using only the passages.
+
+The output MUST be a real, grammatical question — an interrogative that ends with "?" (e.g. "Which compound...?", "What gas...?"). A keyword phrase, a noun phrase, or a description is NOT acceptable. If your draft does not read as a question or does not end with "?", rewrite it.
+
+CORE RULES:
+- It must be a question: phrase it as an interrogative ("Which...?", "What...?", "What is the...?") that ends with "?". A description or noun phrase is invalid — rewrite it.
+- Answer is the concept: the one and only natural answer to your question must be this concept.
+- Never name the concept: the question must never contain the concept's name or ANY of its listed aliases — in any language or spelling. If the name would appear, rewrite the question.
+- Describe, don't name: build the question from the concept's grounded technical attributes as stated in the passages — its structure, functional groups, role or use, properties, the reaction or composition it takes part in, or characteristic parameters.
+- Full direct support: every distinguishing detail you use must be explicitly present in a passage about this concept. No inference, no outside knowledge.
+- Numerical fidelity: reproduce any numbers, units, and ranges exactly as they appear (e.g., "85–87°C", not "about 86°C").
+- Single answer: make the question specific enough that THIS concept — not a chemically similar one — is the natural answer.
+- Paraphrase, don't lift: technical terms (e.g., "Pd/C catalyst", "underground aquifer") may be reused for clarity, but do not lift long descriptive phrases or sentence fragments from the source as the question scaffold — rewrite those in your own words.
+- Natural wording: write it the way a researcher would actually ask — short, specific, and direct. No patent-summary language and no document phrases ("described in the invention", "according to the text").
+- Standalone query for a search engine (no document references): this question is a query for an Information Retrieval (IR) system — the person typing it has NOT seen this document and is searching to FIND it. Never refer to the document or its contents: not only overt phrases ("described in the invention", "according to the text", "in the passage"), but ANY wording that presupposes the reader is looking at the document — "the example given", "the agent mentioned/described/disclosed here", "which compound is provided". Write a self-contained question. Bad: "Which agent example is given that increases ROS?" → Good: "Which agent increases ROS?"
+
+BUILD THE QUESTION FROM THE MOST DISTINGUISHING OF:
+  1. Structure: functional groups, scaffold, substituents, salt/ester form, molecular formula
+  2. Role / use: what the concept does or is used for in the passage
+  3. Property: a characteristic physical or chemical property
+  4. Reaction / process: the reaction, synthesis step, or composition it takes part in
+  5. Parameter: a characteristic condition or value tied to it
+
+EXAMPLES:
+
+Example 1
+Passage (English):
+"A method for sequestering a gas captured from flue gas in an underground aquifer, in which carbonate-forming bacteria, together with an injected nutrient, convert the injected gas into a stable solid carbonate."
+CONCEPT (the answer): carbon dioxide  [aliases: CO2, carbonic anhydride]
+
+✓ Good: "Which injected gas do carbonate-forming bacteria, together with a nutrient, convert into a solid carbonate in an underground aquifer?"
+  → A real question ending in "?". The only natural answer is the concept, and neither its name nor any alias appears.
+
+✗ Bad (not a question): "gas injected into an underground aquifer that carbonate-forming bacteria convert into a carbonate"
+  → A description, not a question — no interrogative, no "?". Rewrite it as a question.
+
+✗ Bad (names the concept): "Where is CO2 injected for conversion into a solid carbonate?"
+  → Uses the alias "CO2", which is forbidden.
+
+✗ Bad (too generic): "Which gas is captured from flue gas?"
+  → Many gases fit; not specific enough that this concept is the answer.
+
+Example 2
+Passage (English):
+"The composition comprises the hydrochloride salt of a 1,4-benzodiazepine bearing a 7-chloro substituent, an N-methyl group, a 5-phenyl substituent and a 2-amino-4-oxide function."
+CONCEPT (the answer): chlordiazepoxide hydrochloride
+
+✓ Good: "Which compound is the hydrochloride salt of a 1,4-benzodiazepine carrying 7-chloro, N-methyl, 5-phenyl and 2-amino-4-oxide substituents?"
+  → A question; the combination of structural features uniquely identifies the concept; its name and aliases are absent.
+
+✗ Bad (not a question): "hydrochloride salt of an N-methyl 1,4-benzodiazepine with 7-chloro, 5-phenyl and 2-amino-4-oxide substituents"
+  → A descriptive noun phrase, not a question. Rewrite it as a question ending in "?".
+
+SELF-CHECK before finalizing:
+- Does the output read as a real question and end with "?" (not a noun phrase or description)?
+- Are the concept's name and every alias absent?
+- Is every detail grounded in a passage about this concept?
+- Would a chemist plausibly answer with THIS concept and not a similar one?
+- Could someone who has never seen this document type this question into a search engine? It must not refer to the document, an "example given", or anything "mentioned/described" in it.
+- If no valid, specific question can be grounded in the passages, set "question" to "".
+
+OUTPUT (valid JSON only, no markdown):
+{"question": "...", "question_type": "..."}
+- question: a single interrogative ending in "?", or "" if no valid question can be formed.
+- question_type: one of structure, role, property, reaction, parameter.
+
+The same concept and passages may appear in several languages; this does not change your output language, which is fixed above. Here are the CONCEPT and passages:

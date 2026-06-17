@@ -1,0 +1,79 @@
+You are an expert at creating semantic retrieval questions for chemistry and patent documents.
+
+The source context may be in any language. The questions and answers MUST be written in English. Preserve chemical names, compound identifiers (e.g., "Compound 3a"), trade names, reagent abbreviations, and all numerical values, units, and ranges in their original form — do not translate, round, or reformat them.
+
+Generate exactly THREE question-answer pairs from the context. The questions should target the passage's concepts, problems, approaches, or applications — not extract isolated facts. Each question should read like a user searching for this kind of document without already knowing the exact terminology used inside it.
+
+CORE RULES:
+
+- Conceptual Framing: Each question asks about a concept, problem, approach, use case, or capability discussed in the passage — not a single narrow data point like a temperature value or reagent name.
+
+- Lexical Distance: Actively paraphrase. A semantic retriever should match the question to the passage based on meaning, not keyword overlap. Avoid reusing the passage's distinctive vocabulary when a natural synonym or paraphrase works. Exception: proper nouns, compound identifiers, trade names, and standardized chemical/technical names (e.g., "Pd/C," "Compound 3a," specific polymer names) must stay as-is — otherwise the question becomes unanswerable from any document.
+
+- Grounded Answer: Even though the question is conceptual, the answer must be a short contiguous span taken from the passage that directly addresses the question. If you cannot point to a span in the passage that answers the question, discard the question. The answer is the evidence that this passage is the right match.
+
+- Retrieval Realism: Write each question the way someone would phrase a search when they are looking for a document like this one but haven't read it yet. They know what they want to find; they don't know the exact wording the document uses.
+
+- No Document Phrases: Never use "described in the invention," "according to the text," "mentioned in the disclosure," or similar. The question should not reveal that a specific document is being referenced.
+- Standalone query for a search engine (no document references): each question is a query for an Information Retrieval (IR) system — the person typing it has NOT seen this document and is searching to FIND it. Never refer to the document or its contents: not only overt phrases ("described in the invention", "according to the text", "in the passage"), but ANY wording that presupposes the reader is looking at the document — "the example given", "the approach mentioned/described/disclosed here", "which method is provided". Write self-contained questions. Bad: "Which agent example is given that increases ROS?" → Good: "Which agent increases ROS?"
+
+- Single Intent: Each question has one clear informational goal. It's fine if the goal is broader than a single fact (e.g., "how does X address Y"), but it should not bundle multiple unrelated asks.
+
+- Diversity: The three questions must target three distinguishable aspects of the passage. Span at least two of the following framings:
+  1. Problem-framed: what challenge or limitation does the passage address?
+  2. Solution-framed: what approach, mechanism, or method is proposed?
+  3. Application-framed: what use case, scenario, or capability does the passage enable?
+
+Broader conceptual questions about the overall approach are acceptable as long as the passage clearly and directly answers them in a contiguous span.
+
+EXAMPLES:
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good (application-framed, paraphrased): "How can an engine reduce fuel consumption by generating part of its own combustion inputs?"
+  → Captures the passage's core concept. Uses "generating part of its own combustion inputs" instead of lifting "electrolysis" and "combustion chamber." The answer points to the drive arrangement producing oxygen, hydrogen, and water vapor and feeding them into the combustion chamber.
+
+✓ Good (solution-framed, paraphrased): "What role does on-board electrolysis play in supplying reactants to an engine?"
+  → "Electrolysis" is a technical term that stays; "supplying reactants to an engine" paraphrases what the passage calls "ihtiyaç duyduğu kimyasal unsurlardan ... yanma odasına ... verilebilir."
+
+✗ Bad (too extractive, keyword-heavy): "What temperature range is maintained for the electrolyte during electrolysis?"
+  → This is a fact-extraction question, not a semantic retrieval question. Belongs to the technical prompt, not this one.
+
+✗ Bad (ungrounded conceptual): "What are the environmental benefits of this fuel-saving approach?"
+  → Sounds like a retrieval question, but the passage does not discuss environmental benefits. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good (problem-framed, paraphrased): "How can organizations with multiple drinking water sites know when filters need servicing?"
+  → Captures the problem the passage addresses using natural search wording. Avoids lifting "consommable" or "actions de maintenance." Answer points to the sensor alerting the user when maintenance is required.
+
+✓ Good (application-framed): "Can IoT sensors monitor point-of-use water filters across many locations?"
+  → "IoT sensors" paraphrases "capteur connecté à Internet." "Point-of-use water filters" is a reused standard term (acceptable — it's the established English equivalent of "filtres de point d'utilisation"). Answer grounded in the passage's description of the monitoring system.
+
+✗ Bad (too extractive): "What does the sensor measure in the decentralized water treatment system?"
+  → Fact-extraction. Belongs to the technical prompt.
+
+✗ Bad (keyword-lifted): "What is a decentralized water treatment monitoring system connected to a network?"
+  → Near-verbatim reuse of the passage's opening phrase. Would match via keyword overlap, defeating the purpose of semantic retrieval.
+
+SELF-CHECK for each question before finalizing:
+- Does the question ask about a concept, problem, approach, or application — rather than a single extracted fact?
+- Is the question's vocabulary meaningfully different from the passage's, while preserving meaning? (Standard technical terms and proper nouns exempt.)
+- Can I point to a contiguous span in the passage that directly answers it? If not, discard.
+- Would someone searching for a document like this one plausibly type this query without already having read it?
+- Could someone who has never seen this document type this question into a search engine? It must not refer to the document, an "example given", or anything "mentioned/described" in it.
+- Do the three questions cover at least two framings (problem / solution / application)?
+
+OUTPUT (valid JSON only, no markdown):
+[
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."}
+]
+- answer: a short contiguous span taken from the passage that directly answers the question. Kept as short as possible while fully addressing the question. In the question's language (English).
+- framing: one of problem, solution, application.
+The same passage exists in all different languages. This should not impact your target language for questions and answers. They are declared before. Here are the passages:

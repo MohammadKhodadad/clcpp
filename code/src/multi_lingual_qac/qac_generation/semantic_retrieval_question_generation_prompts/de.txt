@@ -1,0 +1,72 @@
+Sie sind ein Experte für die Erstellung semantischer Recherche-Fragen zu Chemie- und Patentdokumenten.
+
+Der Quellkontext kann in beliebiger Sprache vorliegen. Die Fragen und Antworten MÜSSEN auf Deutsch verfasst werden. Bewahren Sie chemische Namen, Verbindungsbezeichnungen (z. B. „Compound 3a"), Handelsnamen, Reagenzienabkürzungen sowie alle numerischen Werte, Einheiten und Bereiche in ihrer ursprünglichen Form — übersetzen, runden oder umformatieren Sie diese nicht.
+
+Erzeugen Sie genau DREI Frage-Antwort-Paare aus dem Kontext. Die Fragen sollen auf die Konzepte, Probleme, Ansätze oder Anwendungen der Passage abzielen — nicht isolierte Fakten extrahieren. Jede Frage soll sich lesen, als würde ein Nutzer nach dieser Art von Dokument suchen, ohne bereits die exakte Terminologie zu kennen, die darin verwendet wird.
+
+KERNREGELN:
+- Konzeptionelle Rahmung: Jede Frage bezieht sich auf ein Konzept, Problem, einen Ansatz, Anwendungsfall oder eine Fähigkeit, die in der Passage besprochen werden — nicht auf einen einzelnen engen Datenpunkt wie einen Temperaturwert oder einen Reagenziennamen.
+- Lexikalische Distanz: Paraphrasieren Sie aktiv. Ein semantischer Retriever soll die Frage der Passage aufgrund der Bedeutung zuordnen, nicht aufgrund von Stichwort-Überlappung. Vermeiden Sie die Wiederverwendung des distinktiven Vokabulars der Passage, wenn ein natürliches Synonym oder eine Paraphrase passt. Ausnahme: Eigennamen, Verbindungsbezeichnungen, Handelsnamen und standardisierte chemische/technische Bezeichnungen (z. B. „Pd/C", „Compound 3a", bestimmte Polymernamen) müssen unverändert bleiben — sonst wird die Frage aus keinem Dokument beantwortbar.
+- Verankerte Antwort: Auch wenn die Frage konzeptionell ist, muss die Antwort ein kurzer, zusammenhängender Abschnitt aus der Passage sein, der die Frage direkt adressiert. Wenn Sie nicht auf einen Abschnitt in der Passage zeigen können, der die Frage beantwortet, verwerfen Sie die Frage. Die Antwort ist der Beleg, dass diese Passage die richtige Übereinstimmung ist.
+- Recherche-Realismus: Formulieren Sie jede Frage so, wie jemand sie formulieren würde, der ein Dokument wie dieses sucht, es aber noch nicht gelesen hat. Er weiß, was er finden will; er kennt nicht den exakten Wortlaut, den das Dokument verwendet.
+- Keine Dokumentformeln: Verwenden Sie niemals „in der Erfindung beschrieben", „gemäß dem Text", „in der Offenbarung erwähnt" oder Ähnliches. Die Frage darf nicht erkennen lassen, dass auf ein bestimmtes Dokument Bezug genommen wird.
+- Eigenständige Suchanfrage für eine Suchmaschine (keine Dokumentbezüge): Jede Frage ist eine Anfrage für ein Information-Retrieval-(IR)-System — die Person, die sie eingibt, hat dieses Dokument NICHT gesehen und sucht danach, um es zu FINDEN. Nehmen Sie niemals Bezug auf das Dokument oder seinen Inhalt: weder mit offenen Formeln („in der Erfindung beschrieben", „gemäß dem Text", „in der Passage") noch mit IRGENDEINER Formulierung, die voraussetzt, dass der Leser auf das Dokument blickt — „das angegebene Beispiel", „der hier erwähnte/beschriebene/offenbarte Ansatz", „welche Methode wird bereitgestellt". Formulieren Sie in sich geschlossene Fragen. Schlecht: „Welches Beispielmittel wird angegeben, das ROS erhöht?" → Gut: „Welches Mittel erhöht ROS?"
+- Einzelne Absicht: Jede Frage hat ein klares Informationsziel. Es ist in Ordnung, wenn das Ziel breiter ist als eine einzelne Tatsache (z. B. „wie adressiert X Y"), aber sie darf nicht mehrere unzusammenhängende Anliegen bündeln.
+- Vielfalt: Die drei Fragen müssen drei unterscheidbare Aspekte der Passage ansprechen. Decken Sie mindestens zwei der folgenden Rahmungen ab:
+  1. Problem-Rahmung: Welche Herausforderung oder Einschränkung adressiert die Passage?
+  2. Lösungs-Rahmung: Welcher Ansatz, Mechanismus oder welche Methode wird vorgeschlagen?
+  3. Anwendungs-Rahmung: Welchen Anwendungsfall, welches Szenario oder welche Fähigkeit ermöglicht die Passage?
+
+Breitere konzeptionelle Fragen zum Gesamtansatz sind akzeptabel, solange die Passage sie klar und direkt in einem zusammenhängenden Abschnitt beantwortet.
+
+BEISPIELE:
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good (application-framed, paraphrased): "How can an engine reduce fuel consumption by generating part of its own combustion inputs?"
+  → Captures the passage's core concept. Uses "generating part of its own combustion inputs" instead of lifting "electrolysis" and "combustion chamber." The answer points to the drive arrangement producing oxygen, hydrogen, and water vapor and feeding them into the combustion chamber.
+
+✓ Good (solution-framed, paraphrased): "What role does on-board electrolysis play in supplying reactants to an engine?"
+  → "Electrolysis" is a technical term that stays; "supplying reactants to an engine" paraphrases what the passage calls "ihtiyaç duyduğu kimyasal unsurlardan ... yanma odasına ... verilebilir."
+
+✗ Bad (too extractive, keyword-heavy): "What temperature range is maintained for the electrolyte during electrolysis?"
+  → This is a fact-extraction question, not a semantic retrieval question. Belongs to the technical prompt, not this one.
+
+✗ Bad (ungrounded conceptual): "What are the environmental benefits of this fuel-saving approach?"
+  → Sounds like a retrieval question, but the passage does not discuss environmental benefits. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good (problem-framed, paraphrased): "How can organizations with multiple drinking water sites know when filters need servicing?"
+  → Captures the problem the passage addresses using natural search wording. Avoids lifting "consommable" or "actions de maintenance." Answer points to the sensor alerting the user when maintenance is required.
+
+✓ Good (application-framed): "Can IoT sensors monitor point-of-use water filters across many locations?"
+  → "IoT sensors" paraphrases "capteur connecté à Internet." "Point-of-use water filters" is a reused standard term (acceptable — it's the established English equivalent of "filtres de point d'utilisation"). Answer grounded in the passage's description of the monitoring system.
+
+✗ Bad (too extractive): "What does the sensor measure in the decentralized water treatment system?"
+  → Fact-extraction. Belongs to the technical prompt.
+
+✗ Bad (keyword-lifted): "What is a decentralized water treatment monitoring system connected to a network?"
+  → Near-verbatim reuse of the passage's opening phrase. Would match via keyword overlap, defeating the purpose of semantic retrieval.
+
+SELBSTPRÜFUNG für jede Frage vor dem Finalisieren:
+- Fragt die Frage nach einem Konzept, Problem, Ansatz oder einer Anwendung — statt nach einer einzelnen extrahierten Tatsache?
+- Ist der Wortschatz der Frage bedeutungserhaltend, aber deutlich vom Passagenvokabular verschieden? (Standard-Fachbegriffe und Eigennamen ausgenommen.)
+- Kann ich auf einen zusammenhängenden Abschnitt der Passage zeigen, der sie direkt beantwortet? Wenn nicht, verwerfen.
+- Würde jemand, der nach einem Dokument wie diesem sucht, diese Anfrage plausibel eingeben, ohne es gelesen zu haben?
+- Könnte jemand, der dieses Dokument nie gesehen hat, diese Frage in eine Suchmaschine eingeben? Sie darf nicht auf das Dokument, ein „angegebenes Beispiel" oder etwas darin „Erwähntes/Beschriebenes" Bezug nehmen.
+- Decken die drei Fragen mindestens zwei Rahmungen ab (Problem / Lösung / Anwendung)?
+
+AUSGABE (nur gültiges JSON, kein Markdown):
+[
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."}
+]
+- answer: ein kurzer, zusammenhängender Abschnitt aus der Passage, der die Frage direkt beantwortet. So kurz wie möglich, während die Frage vollständig adressiert wird. In der Sprache der Frage (Deutsch).
+- framing: einer von problem, solution, application.
+Derselbe Abschnitt existiert in verschiedenen Sprachen. Dies sollte Ihre Zielsprache für Fragen und Antworten nicht beeinflussen. Sie sind oben festgelegt. Hier sind die Abschnitte:

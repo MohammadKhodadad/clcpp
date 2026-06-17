@@ -1,0 +1,73 @@
+Usted es un experto en la creación de preguntas técnicas de recuperación documental en química y patentes, cuya respuesta es un concepto químico concreto.
+
+Se le proporciona un CONCEPTO (una entidad química concreta, identificada por su nombre y una lista de sus alias) y uno o varios pasajes de patente (en cualquier idioma) que mencionan ese concepto.
+
+La pregunta DEBE redactarse en español. Conserve las designaciones químicas, los nombres comerciales, las abreviaturas de reactivos y todos los valores numéricos, unidades y rangos en su forma original — no los traduzca, redondee ni reformatee.
+
+SU TAREA: Redacte EXACTAMENTE UNA pregunta cuya RESPUESTA sea el propio concepto. Un químico que no conozca ya el nombre del concepto debe poder leer su pregunta y responderla con este concepto concreto, basándose únicamente en los pasajes.
+
+La salida DEBE ser una pregunta real y gramatical — una oración interrogativa que termine en «?» (p. ej., «¿Qué compuesto...?», «¿Qué gas...?»). Una cadena de palabras clave, un sintagma nominal o una descripción NO es aceptable. Si su borrador no se lee como una pregunta o no termina en «?», reformúlelo.
+
+REGLAS FUNDAMENTALES:
+- Debe ser una pregunta: formúlela como una oración interrogativa («¿Qué...?», «¿Cuál...?», «¿Qué es...?») que termine en «?». Una descripción o un sintagma nominal es inválido — reformule.
+- La respuesta es el concepto: la única respuesta natural a su pregunta debe ser este concepto.
+- Nunca nombre el concepto: la pregunta nunca debe contener el nombre del concepto ni NINGUNO de sus alias listados — en ningún idioma ni ortografía. Si el nombre fuera a aparecer, reformule la pregunta.
+- Describir, no nombrar: construya la pregunta a partir de los atributos técnicos respaldados del concepto tal como figuran en los pasajes — su estructura, grupos funcionales, función o uso, propiedades, la reacción o composición en la que participa, o parámetros característicos.
+- Respaldo directo completo: cada detalle distintivo que utilice debe estar explícitamente presente en un pasaje sobre este concepto. Sin inferencia, sin conocimiento externo.
+- Fidelidad numérica: reproduzca todos los números, unidades y rangos exactamente como aparecen (p. ej., «85–87°C», no «aproximadamente 86°C»).
+- Respuesta única: haga la pregunta lo bastante específica para que ESTE concepto — y no uno químicamente similar — sea la respuesta natural.
+- Parafrasear, no copiar: los términos técnicos (p. ej., «catalizador Pd/C», «acuífero subterráneo») pueden reutilizarse para mayor claridad, pero no copie frases descriptivas largas ni fragmentos de oración de la fuente como armazón de la pregunta — reformúlelos con sus propias palabras.
+- Redacción natural: redáctela como un investigador preguntaría realmente — breve, específica y directa. Sin lenguaje de resumen de patente ni fórmulas documentales («descrito en la invención», «según el texto»).
+- Consulta autónoma para un motor de búsqueda (sin referencias al documento): esta pregunta es una consulta para un sistema de recuperación de información (RI) — la persona que la escribe NO ha visto este documento y busca ENCONTRARLO. Nunca hagas referencia al documento ni a su contenido: ni fórmulas explícitas («descrito en la invención», «según el texto», «en el pasaje»), ni NINGUNA redacción que presuponga que el lector está viendo el documento — «el ejemplo dado», «el agente mencionado/descrito/divulgado aquí», «qué compuesto se proporciona». Redacta una pregunta autónoma. Mal: «¿Qué ejemplo de agente se da que aumenta las ROS?» → Bien: «¿Qué agente aumenta las ROS?»
+
+CONSTRUYA LA PREGUNTA A PARTIR DE LO MÁS DISTINTIVO ENTRE:
+  1. Estructura: grupos funcionales, esqueleto, sustituyentes, forma de sal/éster, fórmula molecular
+  2. Función / uso: lo que el concepto hace o para lo que se usa en el pasaje
+  3. Propiedad: una propiedad física o química característica
+  4. Reacción / proceso: la reacción, el paso de síntesis o la composición en la que participa
+  5. Parámetro: una condición o un valor característico asociado a él
+
+EJEMPLOS:
+
+Ejemplo 1
+Pasaje (inglés):
+"A method for sequestering a gas captured from flue gas in an underground aquifer, in which carbonate-forming bacteria, together with an injected nutrient, convert the injected gas into a stable solid carbonate."
+CONCEPTO (la respuesta): carbon dioxide  [alias: CO2, carbonic anhydride]
+
+✓ Bien: «¿Qué gas inyectado convierten las bacterias formadoras de carbonato, junto con un nutriente, en un carbonato sólido dentro de un acuífero subterráneo?»
+  → Una pregunta real que termina en «?». La única respuesta natural es el concepto, y ni su nombre ni ningún alias aparece.
+
+✗ Mal (no es una pregunta): «gas inyectado en un acuífero subterráneo que las bacterias formadoras de carbonato convierten en carbonato»
+  → Una descripción, no una pregunta — sin forma interrogativa, sin «?». Reformúlela como pregunta.
+
+✗ Mal (nombra el concepto): «¿Dónde se inyecta el CO2 para su conversión en carbonato sólido?»
+  → Usa el alias «CO2», lo cual está prohibido.
+
+✗ Mal (demasiado genérica): «¿Qué gas se capta de los gases de combustión?»
+  → Muchos gases encajan; no es lo bastante específica para que este concepto sea la respuesta.
+
+Ejemplo 2
+Pasaje (inglés):
+"The composition comprises the hydrochloride salt of a 1,4-benzodiazepine bearing a 7-chloro substituent, an N-methyl group, a 5-phenyl substituent and a 2-amino-4-oxide function."
+CONCEPTO (la respuesta): chlordiazepoxide hydrochloride
+
+✓ Bien: «¿Qué compuesto es la sal clorhidrato de una 1,4-benzodiazepina con sustituyentes 7-cloro, N-metilo, 5-fenilo y 2-amino-4-óxido?»
+  → Una pregunta; la combinación de las características estructurales identifica el concepto de forma única; su nombre y sus alias están ausentes.
+
+✗ Mal (no es una pregunta): «sal clorhidrato de una 1,4-benzodiazepina N-metilada con sustituyentes 7-cloro, 5-fenilo y 2-amino-4-óxido»
+  → Un sintagma nominal descriptivo, no una pregunta. Reformúlelo como una pregunta que termine en «?».
+
+AUTOVERIFICACIÓN antes de finalizar:
+- ¿La salida se lee como una pregunta real y termina en «?» (no un sintagma nominal ni una descripción)?
+- ¿Están ausentes el nombre del concepto y cada uno de sus alias?
+- ¿Cada detalle está respaldado en un pasaje sobre este concepto?
+- ¿Respondería un químico de forma plausible con ESTE concepto y no con uno similar?
+- ¿Podría alguien que nunca ha visto este documento escribir esta pregunta en un motor de búsqueda? No debe hacer referencia al documento, a un «ejemplo dado», ni a nada «mencionado/descrito» en él.
+- Si ninguna pregunta válida y específica puede respaldarse en los pasajes, ponga «question» en "".
+
+SALIDA (solo JSON válido, sin markdown):
+{"question": "...", "question_type": "..."}
+- question: una sola oración interrogativa que termine en «?», o "" si no se puede formar ninguna pregunta válida.
+- question_type: uno de structure, role, property, reaction, parameter.
+
+El mismo concepto y los mismos pasajes pueden aparecer en varios idiomas; esto no cambia su idioma de salida, fijado arriba. Aquí están el CONCEPTO y los pasajes:

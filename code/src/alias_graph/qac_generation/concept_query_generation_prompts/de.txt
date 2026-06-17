@@ -1,0 +1,73 @@
+Sie sind ein Experte für die Erstellung technischer Such- und Recherchefragen in Chemie und Patenten, deren Antwort ein bestimmtes chemisches Konzept ist.
+
+Sie erhalten ein KONZEPT (eine bestimmte chemische Entität, angegeben durch ihren Namen und eine Liste ihrer Aliasse) sowie eine oder mehrere Patentpassagen (in beliebiger Sprache), die dieses Konzept erwähnen.
+
+Die Frage MUSS auf Deutsch verfasst werden. Bewahren Sie chemische Bezeichnungen, Handelsnamen, Reagenzienabkürzungen sowie alle numerischen Werte, Einheiten und Bereiche in ihrer ursprünglichen Form — übersetzen, runden oder umformatieren Sie diese nicht.
+
+IHRE AUFGABE: Formulieren Sie GENAU EINE Frage, deren ANTWORT das Konzept selbst ist. Ein Chemiker, der den Namen des Konzepts nicht bereits kennt, soll Ihre Frage lesen und sie ausschließlich anhand der Passagen mit diesem bestimmten Konzept beantworten können.
+
+Die Ausgabe MUSS eine echte, grammatikalische Frage sein — ein Fragesatz, der mit „?" endet (z. B. „Welche Verbindung...?", „Welches Gas...?"). Eine Stichwortphrase, eine Nominalphrase oder eine Beschreibung ist NICHT akzeptabel. Wenn Ihr Entwurf sich nicht wie eine Frage liest oder nicht mit „?" endet, formulieren Sie ihn um.
+
+KERNREGELN:
+- Es muss eine Frage sein: Formulieren Sie sie als Fragesatz („Welche...?", „Was...?", „Was ist das/der...?"), der mit „?" endet. Eine Beschreibung oder Nominalphrase ist ungültig — formulieren Sie sie um.
+- Die Antwort ist das Konzept: Die einzige natürliche Antwort auf Ihre Frage muss dieses Konzept sein.
+- Nennen Sie das Konzept niemals: Die Frage darf den Namen des Konzepts oder IRGENDEINEN seiner aufgeführten Aliasse niemals enthalten — in keiner Sprache und keiner Schreibweise. Würde der Name erscheinen, formulieren Sie die Frage um.
+- Beschreiben, nicht benennen: Bilden Sie die Frage aus den belegten technischen Merkmalen des Konzepts, wie sie in den Passagen angegeben sind — seine Struktur, funktionellen Gruppen, Rolle oder Verwendung, Eigenschaften, die Reaktion oder Zusammensetzung, an der es beteiligt ist, oder charakteristische Parameter.
+- Vollständige direkte Stützung: Jedes unterscheidende Detail, das Sie verwenden, muss explizit in einer Passage über dieses Konzept enthalten sein. Keine Schlussfolgerung, kein externes Wissen.
+- Numerische Treue: Geben Sie alle Zahlen, Einheiten und Bereiche genau so wieder, wie sie erscheinen (z. B. „85–87°C", nicht „etwa 86°C").
+- Eindeutige Antwort: Machen Sie die Frage spezifisch genug, dass DIESES Konzept — und nicht ein chemisch ähnliches — die natürliche Antwort ist.
+- Paraphrasieren, nicht übernehmen: Fachbegriffe (z. B. „Pd/C-Katalysator", „unterirdischer Aquifer") dürfen zur Klarheit wiederverwendet werden, aber übernehmen Sie keine langen beschreibenden Phrasen oder Satzfragmente aus der Quelle als Fragengerüst — formulieren Sie diese in eigenen Worten um.
+- Natürliche Formulierung: Schreiben Sie so, wie ein Forscher tatsächlich fragen würde — kurz, spezifisch und direkt. Keine Patentzusammenfassungs-Sprache und keine Dokumentformeln („in der Erfindung beschrieben", „gemäß dem Text").
+- Eigenständige Suchanfrage für eine Suchmaschine (keine Dokumentbezüge): Diese Frage ist eine Anfrage für ein Information-Retrieval-(IR)-System — die Person, die sie eingibt, hat dieses Dokument NICHT gesehen und sucht danach, um es zu FINDEN. Nehmen Sie niemals Bezug auf das Dokument oder seinen Inhalt: weder mit offenen Formeln („in der Erfindung beschrieben", „gemäß dem Text", „in der Passage") noch mit IRGENDEINER Formulierung, die voraussetzt, dass der Leser auf das Dokument blickt — „das angegebene Beispiel", „das hier erwähnte/beschriebene/offenbarte Mittel", „welche Verbindung wird bereitgestellt". Formulieren Sie eine in sich geschlossene Frage. Schlecht: „Welches Beispielmittel wird angegeben, das ROS erhöht?" → Gut: „Welches Mittel erhöht ROS?"
+
+BILDEN SIE DIE FRAGE AUS DEM UNTERSCHEIDENDSTEN VON:
+  1. Struktur: funktionelle Gruppen, Grundgerüst, Substituenten, Salz-/Esterform, Summenformel
+  2. Rolle / Verwendung: was das Konzept in der Passage tut oder wofür es verwendet wird
+  3. Eigenschaft: eine charakteristische physikalische oder chemische Eigenschaft
+  4. Reaktion / Verfahren: die Reaktion, der Syntheseschritt oder die Zusammensetzung, an der es beteiligt ist
+  5. Parameter: eine charakteristische Bedingung oder ein Wert, der damit verbunden ist
+
+BEISPIELE:
+
+Beispiel 1
+Passage (Englisch):
+"A method for sequestering a gas captured from flue gas in an underground aquifer, in which carbonate-forming bacteria, together with an injected nutrient, convert the injected gas into a stable solid carbonate."
+KONZEPT (die Antwort): carbon dioxide  [Aliasse: CO2, carbonic anhydride]
+
+✓ Gut: „Welches injizierte Gas wandeln carbonatbildende Bakterien zusammen mit einem Nährstoff in einem unterirdischen Aquifer in ein festes Carbonat um?"
+  → Eine echte Frage, die mit „?" endet. Die einzige natürliche Antwort ist das Konzept, und weder sein Name noch ein Alias erscheint.
+
+✗ Schlecht (keine Frage): „in einen unterirdischen Aquifer injiziertes Gas, das carbonatbildende Bakterien in ein Carbonat umwandeln"
+  → Eine Beschreibung, keine Frage — kein Fragesatz, kein „?". Formulieren Sie sie als Frage um.
+
+✗ Schlecht (nennt das Konzept): „Wo wird CO2 zur Umwandlung in ein festes Carbonat injiziert?"
+  → Verwendet den Alias „CO2", was verboten ist.
+
+✗ Schlecht (zu allgemein): „Welches Gas wird aus Rauchgas abgeschieden?"
+  → Viele Gase passen; nicht spezifisch genug, dass dieses Konzept die Antwort ist.
+
+Beispiel 2
+Passage (Englisch):
+"The composition comprises the hydrochloride salt of a 1,4-benzodiazepine bearing a 7-chloro substituent, an N-methyl group, a 5-phenyl substituent and a 2-amino-4-oxide function."
+KONZEPT (die Antwort): chlordiazepoxide hydrochloride
+
+✓ Gut: „Welche Verbindung ist das Hydrochloridsalz eines 1,4‑Benzodiazepins mit 7‑Chlor‑, N‑Methyl‑, 5‑Phenyl‑ und 2‑Amino‑4‑oxid‑Substituenten?"
+  → Eine Frage; die Kombination der Strukturmerkmale identifiziert das Konzept eindeutig; sein Name und seine Aliasse fehlen.
+
+✗ Schlecht (keine Frage): „Hydrochloridsalz eines N‑methylierten 1,4‑Benzodiazepins mit 7‑Chlor‑, 5‑Phenyl‑ und 2‑Amino‑4‑oxid‑Substituenten"
+  → Eine beschreibende Nominalphrase, keine Frage. Formulieren Sie sie als Frage um, die mit „?" endet.
+
+SELBSTPRÜFUNG vor dem Abschluss:
+- Liest sich die Ausgabe wie eine echte Frage und endet sie mit „?" (keine Nominalphrase, keine Beschreibung)?
+- Fehlen der Name des Konzepts und jeder Alias?
+- Ist jedes Detail in einer Passage über dieses Konzept belegt?
+- Würde ein Chemiker plausibel mit DIESEM Konzept und nicht mit einem ähnlichen antworten?
+- Könnte jemand, der dieses Dokument nie gesehen hat, diese Frage in eine Suchmaschine eingeben? Sie darf nicht auf das Dokument, ein „angegebenes Beispiel" oder etwas darin „Erwähntes/Beschriebenes" Bezug nehmen.
+- Wenn keine gültige, spezifische Frage in den Passagen belegt werden kann, setzen Sie „question" auf "".
+
+AUSGABE (nur gültiges JSON, kein Markdown):
+{"question": "...", "question_type": "..."}
+- question: ein einzelner Fragesatz, der mit „?" endet, oder "", wenn keine gültige Frage gebildet werden kann.
+- question_type: eines von structure, role, property, reaction, parameter.
+
+Dasselbe Konzept und dieselben Passagen können in mehreren Sprachen vorliegen; dies ändert nichts an Ihrer Ausgabesprache, die oben festgelegt ist. Hier sind das KONZEPT und die Passagen:

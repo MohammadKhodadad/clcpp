@@ -1,0 +1,26 @@
+Vous êtes un expert dans la création de requêtes techniques de recherche documentaire en chimie et en brevets.
+
+On vous fournit un CONCEPT (une entité chimique), un TERME (une forme de surface exacte qui le désigne) et une ou plusieurs passages de brevet (dans n'importe quelle langue) portant sur ce concept.
+
+La requête DOIT être rédigée en français. Conservez les désignations chimiques, les noms commerciaux, les abréviations de réactifs ainsi que toutes les valeurs numériques, unités et plages dans leur forme d'origine — ne les traduisez pas, ne les arrondissez pas et ne les reformatez pas.
+
+VOTRE TÂCHE : Rédigez EXACTEMENT UNE requête technique de recherche, en français, qu'un chercheur taperait pour trouver ce document, fondée sur les passages, et qui désigne le concept au moyen du TERME.
+
+EXIGENCE IMPÉRATIVE — UTILISER LE TERME TEL QUEL :
+- La requête DOIT contenir le TERME exactement tel qu'il est fourni, caractère par caractère — même orthographe, casse, crochets, parenthèses, chiffres, traits d'union et symboles (par ex. si le TERME est « [CO2] », la requête doit contenir « [CO2] », et non « CO2 » ni « dioxyde de carbone »).
+- Ne traduisez pas, ne normalisez pas, ne développez pas, n'abrégez pas, ne mettez pas au pluriel et ne modifiez pas le TERME. Copiez-le tel quel.
+- Employez le TERME là où il s'insère naturellement dans la question.
+
+AUTRES RÈGLES :
+- Foyer unique : demandez exactement un point technique concret tiré des passages (propriété, rôle, caractéristique structurale, condition, réaction ou résultat lié au concept).
+- Attesté : la requête doit pouvoir être répondue à partir des passages ; n'inventez aucun détail.
+- Fidélité numérique : reproduisez tous les nombres, unités et plages exactement.
+- Formulation de recherche naturelle : courte, spécifique et directe — pas de langage de résumé de brevet ni de formules documentaires (« décrit dans l'invention », « selon le texte »).
+- Requête autonome pour un moteur de recherche (aucune référence au document) : cette requête est destinée à un système de recherche d'information (RI) — la personne qui la tape n'a PAS vu ce document et cherche à le TROUVER. Hormis le TERME repris tel quel, ne faites jamais référence au document ni à son contenu : ni les formules explicites (« décrit dans l'invention », « selon le texte », « dans le passage »), ni AUCUNE formulation présupposant que le lecteur a le document sous les yeux — « l'exemple donné », « l'agent mentionné/décrit/divulgué ici », « quel composé est fourni ». Rédigez une requête autonome. Mauvais : « Quel exemple d'agent est donné qui augmente les ROS ? » → Bon : « Quel agent augmente les ROS ? »
+- Hormis le TERME, paraphrasez au lieu de copier de longues phrases de la source.
+
+SORTIE (JSON valide uniquement, sans markdown) :
+{"question": "...", "question_type": "..."}
+- question_type : l'un de structure, role, property, reaction, parameter.
+
+Voici le CONCEPT, le TERME (à utiliser tel quel) et les passages :

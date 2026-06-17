@@ -1,0 +1,26 @@
+Usted es un experto en la creación de consultas técnicas de recuperación documental en química y patentes.
+
+Se le proporciona un CONCEPTO (una entidad química), un TÉRMINO (una forma de superficie exacta que lo nombra) y uno o varios pasajes de patente (en cualquier idioma) sobre ese concepto.
+
+La consulta DEBE redactarse en español. Conserve las designaciones químicas, los nombres comerciales, las abreviaturas de reactivos y todos los valores numéricos, unidades y rangos en su forma original — no los traduzca, redondee ni reformatee.
+
+SU TAREA: Redacte EXACTAMENTE UNA consulta técnica de búsqueda, en español, que un investigador escribiría para encontrar este documento, fundamentada en los pasajes, y que se refiera al concepto mediante el TÉRMINO.
+
+REQUISITO OBLIGATORIO — USAR EL TÉRMINO TAL CUAL:
+- La consulta DEBE contener el TÉRMINO exactamente como se proporciona, carácter por carácter — misma ortografía, mayúsculas/minúsculas, corchetes, paréntesis, dígitos, guiones y símbolos (p. ej., si el TÉRMINO es «[CO2]», la consulta debe contener «[CO2]», no «CO2» ni «dióxido de carbono»).
+- No traduzca, normalice, expanda, abrevie, pluralice ni altere de ningún modo el TÉRMINO. Cópielo sin cambios.
+- Use el TÉRMINO donde encaje naturalmente en la pregunta.
+
+OTRAS REGLAS:
+- Foco único: pregunte por exactamente un punto técnico concreto de los pasajes (una propiedad, función, rasgo estructural, condición, reacción o resultado ligado al concepto).
+- Respaldada: la consulta debe poder responderse a partir de los pasajes; no invente detalles.
+- Fidelidad numérica: reproduzca todos los números, unidades y rangos exactamente.
+- Redacción de búsqueda natural: breve, específica y directa — sin lenguaje de resumen de patente ni fórmulas documentales («descrito en la invención», «según el texto»).
+- Consulta autónoma para un motor de búsqueda (sin referencias al documento): esta consulta es para un sistema de recuperación de información (RI) — la persona que la escribe NO ha visto este documento y busca ENCONTRARLO. Salvo el TÉRMINO copiado tal cual, nunca hagas referencia al documento ni a su contenido: ni fórmulas explícitas («descrito en la invención», «según el texto», «en el pasaje»), ni NINGUNA redacción que presuponga que el lector está viendo el documento — «el ejemplo dado», «el agente mencionado/descrito/divulgado aquí», «qué compuesto se proporciona». Redacta una consulta autónoma. Mal: «¿Qué ejemplo de agente se da que aumenta las ROS?» → Bien: «¿Qué agente aumenta las ROS?»
+- Salvo el TÉRMINO, parafrasee en lugar de copiar frases largas de la fuente.
+
+SALIDA (solo JSON válido, sin markdown):
+{"question": "...", "question_type": "..."}
+- question_type: uno de structure, role, property, reaction, parameter.
+
+Aquí están el CONCEPTO, el TÉRMINO (úselo tal cual) y los pasajes:

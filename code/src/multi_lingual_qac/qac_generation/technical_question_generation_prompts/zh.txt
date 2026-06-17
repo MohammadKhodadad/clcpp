@@ -1,0 +1,72 @@
+您是为化学和专利文献撰写技术性检索问题的专家。
+
+源上下文可以是任何语言。问题和答案必须用中文（简体中文）撰写。请保留化学名称、化合物标识符（例如 "Compound 3a"）、商品名、试剂缩写以及所有数值、单位和范围的原始形式 —— 不要翻译、四舍五入或重新格式化它们。
+
+请从上下文中生成恰好三对问答。每一对应针对不同的事实。
+
+核心规则：
+- 单一聚焦：每个问题只能询问恰好一条具体信息。绝不要将多个诉求合并（例如不要在同一个问题中同时询问溶剂和产率）。
+- 完整直接支撑：答案必须完全包含在段落的一个连续片段中。如果答案的任何部分需要推理、跨句组合或外部知识 —— 哪怕只是一小步 —— 也要丢弃该问题。部分支撑是不可接受的。
+- 数值忠实：所有数字、单位、范围和容差都必须严格按源文呈现（例如 "85–87°C"，而不是"约 86°C"或"85 至 87 度"）。
+- 自然搜索措辞：以研究人员或工程师在搜索栏中输入查询的方式撰写每个问题 —— 简短、具体、直接。避免专利摘要式语言和冗长名词短语。
+- 不要使用文档套语：绝不使用"本发明所述"、"根据本文"、"在公开内容中提及"或类似表达。请改写为自然措辞。
+- 面向搜索引擎的独立查询（不得引用文档）：每个问题都是面向信息检索（IR）系统的查询 —— 输入它的人尚未看过本文档，正在搜索以"找到"它。绝不能引用该文档或其内容：既不能使用显式套语（"本发明所述""根据本文""在段落中"），也不能使用任何预设读者正在看着该文档的措辞 —— 例如"所给的示例""此处提及/描述/公开的试剂""提供了哪种化合物"。请撰写能独立成立的问题。差："给出了哪种可提高 ROS 的试剂示例？" → 好："哪种试剂可提高 ROS？"
+- 关于翻译技术术语：当存在便利且通顺的中文译法时（例如"催化剂"、"溶剂"、"电解槽"、"产率"等），可以使用中文译法。但当某个技术术语没有公认、明确、常用的中文等价表达，或翻译会引入歧义时，则保留原始（通常为英文）术语，不要强行翻译。在保留原文与使用译文之间，请优先选择不会产生歧义的形式。
+- 改写而非照搬：技术术语和命名实体（例如"电解单元"、"分布式水处理系统"、"Pd/C 催化剂"）可在需要清晰表达时复用。但不要把源文的描述性短语、多词修饰语或句子片段照搬作为问题骨架 —— 请用自己的话改写。
+- 多样性：三个问题必须针对三个不同的事实，并且至少覆盖下文"问什么"中列出的五个类别中的两个。不要三个问题都关于操作参数，或都关于材料。
+
+问什么：
+请围绕以下五个类别提问：
+  1. 参数与条件：温度、压力、时间、浓度、pH、流速、电压、气氛、化学计量、操作范围 等
+  2. 材料：催化剂、溶剂、试剂、底物、添加剂、前体、设备 等
+  3. 结果：产率、选择性、转化率、纯度、效率 等
+  4. 方法：合成路线、表征技术、分离方法 等
+  5. 结构：官能团、晶型、多晶型、分子量、组成 等
+
+只有当段落明确且完整地说明了相关信息时，才可以提关于功能、作用或效果的问题 —— 如果它必须被推断（哪怕只是部分推断）则不可。
+
+示例：
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good: "电解过程中电解液维持在什么温度范围？"
+  → 询问段落中明确给出的一个具体参数。答案："85–87°C" —— 一个连续片段，数字精确保留。
+
+✗ Bad (inference-why): "为什么电解过程中要将电解液加热到约 85–87°C？"
+  → 段落给出了温度，但从未解释选择该温度的原因。
+
+✗ Bad (partial support): "电解产生哪些气体并被通入燃烧室，比例是多少？"
+  → 段落列出了气体（氧气、氢气、水蒸气），但从未给出比例。问题只能被部分回答。丢弃。
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good: "传感器在分布式水处理系统中测量什么？"
+  → 简短、自然，针对段落直接给出的一个具体事实。"分布式水处理系统"是允许复用的技术术语。
+
+✗ Bad (lifted framing): "为什么至少一个传感器要安装在耗材或分布式处理过程的上游或下游？"
+  → 从源文照搬一长串描述性短语，并询问段落未给出的原因。
+
+✗ Bad (partial support): "传感器如何判断需要维护？"
+  → 段落说传感器在需要维护时向用户告警，但从未说明其判断的机制或阈值。丢弃。
+
+每个问题最终确认前的自检：
+- 答案是否能通过指向段落中的一个连续片段获得，且无需任何推理或跨句组合？如果不能，丢弃。
+- 问题是否只问一条信息？
+- 答案中所有数字、单位和范围是否严格按源文呈现？
+- 一个研究人员是否会合理地把这一查询输入搜索栏？
+- 一个从未看过本文档的人，是否能把这个问题输入搜索引擎？它不得引用该文档、某个"所给示例"，或文档中"提及/描述"的任何内容。
+- 三个问题是否针对三个不同的事实，并覆盖"问什么"中至少两个类别？
+
+输出（只输出有效 JSON，不要 markdown）：
+[
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."}
+]
+- answer：完整且直接回答问题的最短片段 —— 通常是一个短语或一个简短句子。严格以段落为依据。
+- question_type：parameter_or_condition、material、outcome、method、structure 之一。
+同一段落以不同语言存在。这不应影响您撰写问题和答案的目标语言。目标语言已在上方声明。以下是各段落：

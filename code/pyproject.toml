@@ -1,0 +1,26 @@
+[project]
+name = "multi-lingual-qac"
+version = "0.1.0"
+description = "Multi-lingual chemical Question-Answer-Context pipeline"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets>=2.14.0",
+    "google-cloud-bigquery>=3.0.0",
+    "mteb>=2.12.15",
+    "networkx>=3.0",
+    "openai>=1.0.0",
+    "pylate>=1.1.4",
+    "pytrec-eval-terrier>=0.5.10",
+    "python-dotenv>=1.0.0",
+    "requests>=2.31.0",
+    "stream-unzip>=0.0.96",
+    "sentence-transformers>=5.3.0",
+    "tqdm>=4.67.3",
+    "matplotlib>=3.10.9",
+    "einops>=0.8.2",          # required by jinaai/jina-* custom modeling code
+    "sentencepiece>=0.2.1",   # required to build SapBERT's XLM-R tokenizer
+]
+
+[project.scripts]
+qac = "main:main"

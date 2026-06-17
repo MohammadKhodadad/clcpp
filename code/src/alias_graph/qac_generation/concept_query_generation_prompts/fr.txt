@@ -1,0 +1,73 @@
+Vous êtes un expert dans la création de questions techniques de recherche documentaire en chimie et en brevets, dont la réponse est un concept chimique précis.
+
+On vous fournit un CONCEPT (une entité chimique précise, identifiée par son nom et une liste de ses alias) ainsi qu'une ou plusieurs passages de brevet (dans n'importe quelle langue) qui mentionnent ce concept.
+
+La question DOIT être rédigée en français. Conservez les désignations chimiques, les noms commerciaux, les abréviations de réactifs ainsi que toutes les valeurs numériques, unités et plages dans leur forme d'origine — ne les traduisez pas, ne les arrondissez pas et ne les reformatez pas.
+
+VOTRE TÂCHE : Rédigez EXACTEMENT UNE question dont la RÉPONSE est le concept lui-même. Un chimiste qui ne connaît pas déjà le nom du concept doit pouvoir lire votre question et y répondre par ce concept précis, en s'appuyant uniquement sur les passages.
+
+La sortie DOIT être une véritable question grammaticale — une phrase interrogative se terminant par « ? » (par ex. « Quel composé...? », « Quel gaz...? »). Une suite de mots-clés, un groupe nominal ou une description n'est PAS acceptable. Si votre brouillon ne se lit pas comme une question ou ne se termine pas par « ? », reformulez-le.
+
+RÈGLES FONDAMENTALES :
+- Ce doit être une question : formulez-la comme une phrase interrogative (« Quel...? », « Quelle...? », « Qu'est-ce que...? ») se terminant par « ? ». Une description ou un groupe nominal est invalide — reformulez.
+- La réponse est le concept : la seule réponse naturelle à votre question doit être ce concept.
+- Ne nommez jamais le concept : la question ne doit jamais contenir le nom du concept ni AUCUN de ses alias listés — dans aucune langue ni aucune orthographe. Si le nom devait apparaître, reformulez la question.
+- Décrire, pas nommer : construisez la question à partir des attributs techniques attestés du concept tels qu'ils figurent dans les passages — sa structure, ses groupes fonctionnels, son rôle ou son usage, ses propriétés, la réaction ou la composition à laquelle il participe, ou des paramètres caractéristiques.
+- Soutien direct complet : chaque détail distinctif que vous utilisez doit être explicitement présent dans un passage portant sur ce concept. Aucune inférence, aucune connaissance externe.
+- Fidélité numérique : reproduisez tous les nombres, unités et plages exactement tels qu'ils apparaissent (par ex. « 85–87°C », et non « environ 86°C »).
+- Réponse unique : rendez la question suffisamment spécifique pour que CE concept — et non un concept chimiquement similaire — soit la réponse naturelle.
+- Paraphraser, ne pas recopier : les termes techniques (par ex. « catalyseur Pd/C », « aquifère souterrain ») peuvent être réutilisés pour la clarté, mais ne recopiez pas de longues phrases descriptives ou des fragments de phrase de la source comme ossature de la question — reformulez-les avec vos propres mots.
+- Formulation naturelle : rédigez-la comme un chercheur poserait réellement la question — courte, spécifique et directe. Pas de langage de résumé de brevet ni de formules documentaires (« décrit dans l'invention », « selon le texte »).
+- Requête autonome pour un moteur de recherche (aucune référence au document) : cette question est une requête pour un système de recherche d'information (RI) — la personne qui la tape n'a PAS vu ce document et cherche à le TROUVER. Ne faites jamais référence au document ni à son contenu : ni les formules explicites (« décrit dans l'invention », « selon le texte », « dans le passage »), ni AUCUNE formulation présupposant que le lecteur a le document sous les yeux — « l'exemple donné », « l'agent mentionné/décrit/divulgué ici », « quel composé est fourni ». Rédigez une question autonome. Mauvais : « Quel exemple d'agent est donné qui augmente les ROS ? » → Bon : « Quel agent augmente les ROS ? »
+
+CONSTRUISEZ LA QUESTION À PARTIR DU PLUS DISTINCTIF PARMI :
+  1. Structure : groupes fonctionnels, squelette, substituants, forme sel/ester, formule moléculaire
+  2. Rôle / usage : ce que le concept fait ou ce à quoi il sert dans le passage
+  3. Propriété : une propriété physique ou chimique caractéristique
+  4. Réaction / procédé : la réaction, l'étape de synthèse ou la composition à laquelle il participe
+  5. Paramètre : une condition ou une valeur caractéristique qui lui est associée
+
+EXEMPLES :
+
+Exemple 1
+Passage (anglais) :
+"A method for sequestering a gas captured from flue gas in an underground aquifer, in which carbonate-forming bacteria, together with an injected nutrient, convert the injected gas into a stable solid carbonate."
+CONCEPT (la réponse) : carbon dioxide  [alias : CO2, carbonic anhydride]
+
+✓ Bon : « Quel gaz injecté des bactéries carbonatogènes, avec un nutriment, transforment-elles en un carbonate solide dans un aquifère souterrain ? »
+  → Une véritable question se terminant par « ? ». La seule réponse naturelle est le concept, et ni son nom ni aucun alias n'apparaît.
+
+✗ Mauvais (pas une question) : « gaz injecté dans un aquifère souterrain que des bactéries carbonatogènes transforment en carbonate »
+  → Une description, pas une question — aucune forme interrogative, pas de « ? ». Reformulez-la comme une question.
+
+✗ Mauvais (nomme le concept) : « Où le CO2 est-il injecté pour être transformé en carbonate solide ? »
+  → Utilise l'alias « CO2 », ce qui est interdit.
+
+✗ Mauvais (trop générique) : « Quel gaz est capté à partir des fumées ? »
+  → De nombreux gaz conviennent ; pas assez spécifique pour que ce concept soit la réponse.
+
+Exemple 2
+Passage (anglais) :
+"The composition comprises the hydrochloride salt of a 1,4-benzodiazepine bearing a 7-chloro substituent, an N-methyl group, a 5-phenyl substituent and a 2-amino-4-oxide function."
+CONCEPT (la réponse) : chlordiazepoxide hydrochloride
+
+✓ Bon : « Quel composé est le chlorhydrate d'une 1,4-benzodiazépine portant des substituants 7-chloro, N-méthyle, 5-phényle et 2-amino-4-oxyde ? »
+  → Une question ; la combinaison des caractéristiques structurales identifie le concept de manière unique ; son nom et ses alias sont absents.
+
+✗ Mauvais (pas une question) : « chlorhydrate d'une 1,4-benzodiazépine N-méthylée portant des substituants 7-chloro, 5-phényle et 2-amino-4-oxyde »
+  → Un groupe nominal descriptif, pas une question. Reformulez-le comme une question se terminant par « ? ».
+
+AUTOVÉRIFICATION avant de finaliser :
+- La sortie se lit-elle comme une véritable question et se termine-t-elle par « ? » (pas un groupe nominal ni une description) ?
+- Le nom du concept et chacun de ses alias sont-ils absents ?
+- Chaque détail est-il attesté dans un passage portant sur ce concept ?
+- Un chimiste répondrait-il plausiblement par CE concept et non par un concept similaire ?
+- Quelqu'un qui n'a jamais vu ce document pourrait-il taper cette question dans un moteur de recherche ? Elle ne doit pas faire référence au document, à un « exemple donné », ni à quoi que ce soit qui y est « mentionné/décrit ».
+- Si aucune question valide et spécifique ne peut être étayée par les passages, mettez « question » à "".
+
+SORTIE (JSON valide uniquement, sans markdown) :
+{"question": "...", "question_type": "..."}
+- question : une seule phrase interrogative se terminant par « ? », ou "" si aucune question valide ne peut être formée.
+- question_type : l'un de structure, role, property, reaction, parameter.
+
+Le même concept et les mêmes passages peuvent apparaître dans plusieurs langues ; cela ne change pas votre langue de sortie, fixée ci-dessus. Voici le CONCEPT et les passages :

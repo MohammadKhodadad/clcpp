@@ -1,0 +1,71 @@
+You are an expert at creating technical chemistry and patent retrieval questions.
+
+The source context may be in any language. The questions and answers MUST be written in English. Preserve chemical names, compound identifiers (e.g., "Compound 3a"), trade names, reagent abbreviations, and all numerical values, units, and ranges in their original form — do not translate, round, or reformat them.
+
+Generate exactly THREE question-answer pairs from the context. Each should target a different fact.
+
+CORE RULES:
+- Single Focus: Each question must ask for exactly ONE specific piece of information. Never combine multiple asks (e.g., do not ask for a solvent and a yield in the same question).
+- Full Direct Support: The answer must be fully stated in a contiguous span of the passage. If any part of the answer requires inference, combination across sentences, or outside knowledge — even a small step — discard the question. Partial support is not acceptable.
+- Numerical Fidelity: Reproduce all numbers, units, ranges, and tolerances exactly as they appear in the source (e.g., "85–87°C", not "about 86°C" or "85 to 87 degrees").
+- Natural Search Wording: Write each question as a researcher or engineer would type it into a search bar — short, specific, and direct. Avoid patent-summary language and long noun phrases.
+- No Document Phrases: Never use "described in the invention," "according to the text," "mentioned in the disclosure," or similar. Rewrite into natural wording.
+- Standalone query for a search engine (no document references): each question is a query for an Information Retrieval (IR) system — the person typing it has NOT seen this document and is searching to FIND it. Never refer to the document or its contents: not only overt phrases ("described in the invention", "according to the text", "in the passage"), but ANY wording that presupposes the reader is looking at the document — "the example given", "the agent mentioned/described/disclosed here", "which compound is provided". Write self-contained questions. Bad: "Which agent example is given that increases ROS?" → Good: "Which agent increases ROS?"
+- Paraphrase, Don't Lift: Technical terms and named entities (e.g., "electrolysis unit," "decentralized water treatment system," "Pd/C catalyst") may be reused as needed for clarity. But do not lift descriptive phrases, multi-word modifiers, or sentence fragments from the source as question scaffolding — rewrite those in your own words.
+- Diversity: The three questions must target three different facts AND span at least two of the five categories listed under WHAT TO ASK. Do not ask three questions all about operating parameters, or all about materials.
+
+WHAT TO ASK:
+Target questions in these five categories:
+  1. Parameters & Conditions: temperature, pressure, time, concentration, pH, flow rate, voltage, atmosphere, stoichiometry, operating ranges and etc
+  2. Materials: catalyst, solvent, reagent, substrate, additive, precursor, equipment and etc
+  3. Outcomes: yield, selectivity, conversion, purity, efficiency and etc
+  4. Methods: synthesis route, characterization technique, separation method and etc
+  5. Structure: functional group, crystal form, polymorph, molecular weight, composition and etc
+
+Questions about function, role, or effect are acceptable ONLY when the passage explicitly and completely states that information — not when it must be inferred, even partially.
+
+EXAMPLES:
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good: "What temperature range is maintained for the electrolyte during electrolysis?"
+  → Asks for one specific parameter directly stated in the passage. Answer: "85–87°C" — a contiguous span, exact numbers preserved.
+
+✗ Bad (inference-why): "Why is the electrolyte heated to about 85–87°C during electrolysis?"
+  → The passage states the temperature but never explains the reason for choosing it.
+
+✗ Bad (partial support): "What gases are produced by electrolysis and fed into the combustion chamber, and in what ratio?"
+  → The passage lists the gases (oxygen, hydrogen, water vapor) but never gives a ratio. The question is only partially answerable. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good: "What does the sensor measure in the decentralized water treatment system?"
+  → Short, natural, one specific fact directly stated. "Decentralized water treatment system" is a reused technical term, which is allowed.
+
+✗ Bad (lifted framing): "Why is at least one sensor installed upstream or downstream of a consumable or decentralized treatment process?"
+  → Lifts a long descriptive phrase from the source and asks for reasoning the passage does not give.
+
+✗ Bad (partial support): "How does the sensor determine when maintenance is required?"
+  → The passage says the sensor alerts the user when maintenance is needed, but never states the mechanism or threshold by which it makes that determination. Discard.
+
+SELF-CHECK for each question before finalizing:
+- Can the answer be produced by pointing to a contiguous span in the passage, with no inference or combination across sentences? If not, discard.
+- Does the question ask for exactly one piece of information?
+- Are all numbers, units, and ranges in the answer reproduced exactly as in the source?
+- Would a researcher plausibly type this query into a search bar?
+- Could someone who has never seen this document type this question into a search engine? It must not refer to the document, an "example given", or anything "mentioned/described" in it.
+- Are the three questions about three different facts, covering at least two categories from WHAT TO ASK?
+
+OUTPUT (valid JSON only, no markdown):
+[
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."}
+]
+- answer: the shortest span that fully and directly answers the question — typically a phrase or a single short sentence. Strictly grounded in the passage.
+- question_type: one of parameter_or_condition, material, outcome, method, structure.
+The same passage exists in all different languages. This should not impact your target language for questions and answers. They are declared before. Here are the passages:

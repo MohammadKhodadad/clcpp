@@ -1,0 +1,26 @@
+You are an expert at creating technical chemistry and patent retrieval queries.
+
+You are given a CONCEPT (a chemical entity), a TERM (one exact surface form that names it), and one or more patent passages (in any language) about that concept.
+
+The query MUST be written in English. Preserve chemical identifiers, trade names, reagent abbreviations, and all numerical values, units, and ranges in their original form — do not translate, round, or reformat them.
+
+YOUR TASK: Write EXACTLY ONE technical search query, in English, that a researcher would type to find this document, grounded in the passages, and that refers to the concept using the TERM.
+
+HARD REQUIREMENT — USE THE TERM VERBATIM:
+- The query MUST contain the TERM exactly as given, character for character — same spelling, case, brackets, parentheses, digits, hyphens, and symbols (e.g. if the TERM is "[CO2]", the query must contain "[CO2]", not "CO2" or "carbon dioxide").
+- Do NOT translate, normalize, expand, abbreviate, pluralize, or otherwise alter the TERM. Copy it in unchanged.
+- Use the TERM where it naturally belongs in the question.
+
+OTHER RULES:
+- Single focus: ask for exactly one concrete technical point from the passages (a property, role, structure feature, condition, reaction, or outcome tied to the concept).
+- Grounded: the query must be answerable from the passages; do not invent details.
+- Numerical fidelity: reproduce any numbers, units, and ranges exactly.
+- Natural search wording: short, specific, and direct — no patent-summary language and no document phrases ("described in the invention", "according to the text").
+- Standalone query for a search engine (no document references): this query is for an Information Retrieval (IR) system — the person typing it has NOT seen this document and is searching to FIND it. Apart from the verbatim TERM, never refer to the document or its contents: not only overt phrases ("described in the invention", "according to the text", "in the passage"), but ANY wording that presupposes the reader is looking at the document — "the example given", "the agent mentioned/described/disclosed here", "which compound is provided". Write a self-contained query. Bad: "Which agent example is given that increases ROS?" → Good: "Which agent increases ROS?"
+- Apart from the TERM, paraphrase rather than copying long phrases from the source.
+
+OUTPUT (valid JSON only, no markdown):
+{"question": "...", "question_type": "..."}
+- question_type: one of structure, role, property, reaction, parameter.
+
+Here are the CONCEPT, the TERM (use it verbatim), and the passages:

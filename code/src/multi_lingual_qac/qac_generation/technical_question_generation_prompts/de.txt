@@ -1,0 +1,71 @@
+Sie sind ein Experte für die Erstellung technischer Fragen zur Dokumentenrecherche in Chemie und Patenten.
+
+Der Quellkontext kann in beliebiger Sprache vorliegen. Die Fragen und Antworten MÜSSEN auf Deutsch verfasst werden. Bewahren Sie chemische Namen, Verbindungsbezeichnungen (z. B. „Compound 3a"), Handelsnamen, Reagenzienabkürzungen sowie alle numerischen Werte, Einheiten und Bereiche in ihrer ursprünglichen Form — übersetzen, runden oder umformatieren Sie diese nicht.
+
+Erzeugen Sie genau DREI Frage-Antwort-Paare aus dem Kontext. Jedes soll sich auf eine andere Tatsache beziehen.
+
+KERNREGELN:
+- Einzelner Fokus: Jede Frage muss nach genau EINER spezifischen Information fragen. Kombinieren Sie niemals mehrere Anliegen (z. B. fragen Sie nicht in derselben Frage nach einem Lösungsmittel und einer Ausbeute).
+- Vollständige direkte Stützung: Die Antwort muss vollständig in einem zusammenhängenden Abschnitt der Passage enthalten sein. Wenn irgendein Teil der Antwort eine Schlussfolgerung, eine Kombination über Sätze hinweg oder externes Wissen erfordert — auch nur einen kleinen Schritt — verwerfen Sie die Frage. Teilweise Stützung ist nicht akzeptabel.
+- Numerische Treue: Geben Sie alle Zahlen, Einheiten, Bereiche und Toleranzen genau so wieder, wie sie in der Quelle erscheinen (z. B. „85–87°C", nicht „etwa 86°C" oder „85 bis 87 Grad").
+- Natürliche Suchformulierung: Formulieren Sie jede Frage so, wie ein Forscher oder Ingenieur sie in eine Suchleiste eingeben würde — kurz, spezifisch und direkt. Vermeiden Sie Patentzusammenfassungs-Sprache und lange Nominalphrasen.
+- Keine Dokumentformeln: Verwenden Sie niemals „in der Erfindung beschrieben", „gemäß dem Text", „in der Offenbarung erwähnt" oder Ähnliches. Formulieren Sie in natürlicher Sprache um.
+- Eigenständige Suchanfrage für eine Suchmaschine (keine Dokumentbezüge): Jede Frage ist eine Anfrage für ein Information-Retrieval-(IR)-System — die Person, die sie eingibt, hat dieses Dokument NICHT gesehen und sucht danach, um es zu FINDEN. Nehmen Sie niemals Bezug auf das Dokument oder seinen Inhalt: weder mit offenen Formeln („in der Erfindung beschrieben", „gemäß dem Text", „in der Passage") noch mit IRGENDEINER Formulierung, die voraussetzt, dass der Leser auf das Dokument blickt — „das angegebene Beispiel", „das hier erwähnte/beschriebene/offenbarte Mittel", „welche Verbindung wird bereitgestellt". Formulieren Sie in sich geschlossene Fragen. Schlecht: „Welches Beispielmittel wird angegeben, das ROS erhöht?" → Gut: „Welches Mittel erhöht ROS?"
+- Paraphrasieren, nicht übernehmen: Fachbegriffe und benannte Entitäten (z. B. „Elektrolyseeinheit", „dezentrales Wasseraufbereitungssystem", „Pd/C-Katalysator") dürfen bei Bedarf zur Klarheit wiederverwendet werden. Aber übernehmen Sie keine beschreibenden Phrasen, mehrteiligen Modifikatoren oder Satzfragmente aus der Quelle als Fragengerüst — formulieren Sie diese in eigenen Worten um.
+- Vielfalt: Die drei Fragen müssen auf drei verschiedene Tatsachen abzielen UND mindestens zwei der fünf unter WORNACH FRAGEN aufgelisteten Kategorien abdecken. Stellen Sie nicht drei Fragen, die alle Betriebsparameter oder alle Materialien betreffen.
+
+WORNACH FRAGEN:
+Zielen Sie auf Fragen in diesen fünf Kategorien:
+  1. Parameter und Bedingungen: Temperatur, Druck, Zeit, Konzentration, pH-Wert, Durchflussrate, Spannung, Atmosphäre, Stöchiometrie, Betriebsbereiche usw.
+  2. Materialien: Katalysator, Lösungsmittel, Reagenz, Substrat, Additiv, Präkursor, Ausrüstung usw.
+  3. Ergebnisse: Ausbeute, Selektivität, Umsatz, Reinheit, Effizienz usw.
+  4. Methoden: Syntheseweg, Charakterisierungstechnik, Trennmethode usw.
+  5. Struktur: funktionelle Gruppe, Kristallform, Polymorph, Molekulargewicht, Zusammensetzung usw.
+
+Fragen zu Funktion, Rolle oder Wirkung sind NUR dann akzeptabel, wenn die Passage diese Information explizit und vollständig angibt — nicht wenn sie auch nur teilweise abgeleitet werden muss.
+
+BEISPIELE:
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good: "What temperature range is maintained for the electrolyte during electrolysis?"
+  → Asks for one specific parameter directly stated in the passage. Answer: "85–87°C" — a contiguous span, exact numbers preserved.
+
+✗ Bad (inference-why): "Why is the electrolyte heated to about 85–87°C during electrolysis?"
+  → The passage states the temperature but never explains the reason for choosing it.
+
+✗ Bad (partial support): "What gases are produced by electrolysis and fed into the combustion chamber, and in what ratio?"
+  → The passage lists the gases (oxygen, hydrogen, water vapor) but never gives a ratio. The question is only partially answerable. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good: "What does the sensor measure in the decentralized water treatment system?"
+  → Short, natural, one specific fact directly stated. "Decentralized water treatment system" is a reused technical term, which is allowed.
+
+✗ Bad (lifted framing): "Why is at least one sensor installed upstream or downstream of a consumable or decentralized treatment process?"
+  → Lifts a long descriptive phrase from the source and asks for reasoning the passage does not give.
+
+✗ Bad (partial support): "How does the sensor determine when maintenance is required?"
+  → The passage says the sensor alerts the user when maintenance is needed, but never states the mechanism or threshold by which it makes that determination. Discard.
+
+SELBSTPRÜFUNG für jede Frage vor dem Finalisieren:
+- Lässt sich die Antwort aus einem zusammenhängenden Abschnitt der Passage gewinnen, ohne Schlussfolgerung oder Kombination über Sätze hinweg? Wenn nicht, verwerfen.
+- Fragt die Frage nach genau einer Information?
+- Werden alle Zahlen, Einheiten und Bereiche in der Antwort exakt wie in der Quelle wiedergegeben?
+- Würde ein Forscher diese Suchanfrage plausibel in eine Suchleiste eingeben?
+- Könnte jemand, der dieses Dokument nie gesehen hat, diese Frage in eine Suchmaschine eingeben? Sie darf nicht auf das Dokument, ein „angegebenes Beispiel" oder etwas darin „Erwähntes/Beschriebenes" Bezug nehmen.
+- Betreffen die drei Fragen drei unterschiedliche Tatsachen und decken mindestens zwei Kategorien aus WORNACH FRAGEN ab?
+
+AUSGABE (nur gültiges JSON, kein Markdown):
+[
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."}
+]
+- answer: der kürzeste Abschnitt, der die Frage vollständig und direkt beantwortet — typischerweise eine Phrase oder ein einzelner kurzer Satz. Streng in der Passage verankert.
+- question_type: einer von parameter_or_condition, material, outcome, method, structure.
+Derselbe Abschnitt existiert in verschiedenen Sprachen. Dies sollte Ihre Zielsprache für Fragen und Antworten nicht beeinflussen. Sie sind oben festgelegt. Hier sind die Abschnitte:

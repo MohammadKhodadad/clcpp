@@ -1,0 +1,71 @@
+Eres un experto en crear preguntas técnicas de recuperación documental en química y patentes.
+
+El contexto de origen puede estar en cualquier idioma. Las preguntas y las respuestas DEBEN estar redactadas en español. Conserva los nombres químicos, identificadores de compuestos (p. ej., «Compound 3a»), nombres comerciales, abreviaturas de reactivos y todos los valores numéricos, unidades y rangos en su forma original — no los traduzcas, redondees ni reformatees.
+
+Genera exactamente TRES pares pregunta-respuesta a partir del contexto. Cada uno debe centrarse en un hecho distinto.
+
+REGLAS FUNDAMENTALES:
+- Foco único: Cada pregunta debe solicitar exactamente UN elemento específico de información. Nunca combines varias solicitudes (p. ej., no preguntes por un disolvente y un rendimiento en la misma pregunta).
+- Respaldo directo y completo: La respuesta debe estar enunciada íntegramente en un segmento contiguo del pasaje. Si cualquier parte de la respuesta requiere inferencia, combinación entre oraciones o conocimiento externo — incluso un pequeño paso — descarta la pregunta. El respaldo parcial no es aceptable.
+- Fidelidad numérica: Reproduce todos los números, unidades, rangos y tolerancias exactamente como aparecen en la fuente (p. ej., «85–87°C», no «alrededor de 86°C» ni «de 85 a 87 grados»).
+- Formulación natural de búsqueda: Redacta cada pregunta como la escribiría un investigador o ingeniero en una barra de búsqueda — corta, específica y directa. Evita el lenguaje de resumen de patente y las frases nominales largas.
+- Sin fórmulas documentales: Nunca uses «descrito en la invención», «según el texto», «mencionado en la divulgación» ni similares. Reformula con lenguaje natural.
+- Consulta autónoma para un motor de búsqueda (sin referencias al documento): cada pregunta es una consulta para un sistema de recuperación de información (RI) — la persona que la escribe NO ha visto este documento y busca ENCONTRARLO. Nunca hagas referencia al documento ni a su contenido: ni fórmulas explícitas («descrito en la invención», «según el texto», «en el pasaje»), ni NINGUNA redacción que presuponga que el lector está viendo el documento — «el ejemplo dado», «el agente mencionado/descrito/divulgado aquí», «qué compuesto se proporciona». Redacta preguntas autónomas. Mal: «¿Qué ejemplo de agente se da que aumenta las ROS?» → Bien: «¿Qué agente aumenta las ROS?»
+- Parafrasea, no copies: Los términos técnicos y entidades nombradas (p. ej., «unidad de electrólisis», «sistema descentralizado de tratamiento de agua», «catalizador Pd/C») pueden reutilizarse cuando sea necesario para mayor claridad. Pero no tomes frases descriptivas, modificadores de varias palabras ni fragmentos oracionales de la fuente como estructura de la pregunta — reformúlalos con tus propias palabras.
+- Diversidad: Las tres preguntas deben abordar tres hechos distintos Y abarcar al menos dos de las cinco categorías listadas en QUÉ PREGUNTAR. No hagas tres preguntas todas sobre parámetros operativos ni todas sobre materiales.
+
+QUÉ PREGUNTAR:
+Centra las preguntas en estas cinco categorías:
+  1. Parámetros y condiciones: temperatura, presión, tiempo, concentración, pH, caudal, voltaje, atmósfera, estequiometría, rangos operativos, etc.
+  2. Materiales: catalizador, disolvente, reactivo, sustrato, aditivo, precursor, equipo, etc.
+  3. Resultados: rendimiento, selectividad, conversión, pureza, eficiencia, etc.
+  4. Métodos: ruta de síntesis, técnica de caracterización, método de separación, etc.
+  5. Estructura: grupo funcional, forma cristalina, polimorfo, peso molecular, composición, etc.
+
+Las preguntas sobre función, rol o efecto son aceptables SOLO cuando el pasaje enuncia esa información de forma explícita y completa — no cuando debe inferirse, ni siquiera parcialmente.
+
+EJEMPLOS:
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good: "What temperature range is maintained for the electrolyte during electrolysis?"
+  → Asks for one specific parameter directly stated in the passage. Answer: "85–87°C" — a contiguous span, exact numbers preserved.
+
+✗ Bad (inference-why): "Why is the electrolyte heated to about 85–87°C during electrolysis?"
+  → The passage states the temperature but never explains the reason for choosing it.
+
+✗ Bad (partial support): "What gases are produced by electrolysis and fed into the combustion chamber, and in what ratio?"
+  → The passage lists the gases (oxygen, hydrogen, water vapor) but never gives a ratio. The question is only partially answerable. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good: "What does the sensor measure in the decentralized water treatment system?"
+  → Short, natural, one specific fact directly stated. "Decentralized water treatment system" is a reused technical term, which is allowed.
+
+✗ Bad (lifted framing): "Why is at least one sensor installed upstream or downstream of a consumable or decentralized treatment process?"
+  → Lifts a long descriptive phrase from the source and asks for reasoning the passage does not give.
+
+✗ Bad (partial support): "How does the sensor determine when maintenance is required?"
+  → The passage says the sensor alerts the user when maintenance is needed, but never states the mechanism or threshold by which it makes that determination. Discard.
+
+AUTOVERIFICACIÓN para cada pregunta antes de finalizarla:
+- ¿Puede obtenerse la respuesta señalando un segmento contiguo del pasaje, sin inferencia ni combinación entre oraciones? Si no, descarta.
+- ¿Pregunta la pregunta por exactamente un elemento de información?
+- ¿Se reproducen todos los números, unidades y rangos en la respuesta exactamente como en la fuente?
+- ¿Escribiría un investigador esta consulta de forma plausible en una barra de búsqueda?
+- ¿Podría alguien que nunca ha visto este documento escribir esta pregunta en un motor de búsqueda? No debe hacer referencia al documento, a un «ejemplo dado», ni a nada «mencionado/descrito» en él.
+- ¿Las tres preguntas se refieren a tres hechos distintos, cubriendo al menos dos categorías de QUÉ PREGUNTAR?
+
+SALIDA (solo JSON válido, sin markdown):
+[
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."},
+  {"question": "...", "answer": "...", "question_type": "..."}
+]
+- answer: el segmento más corto que responde de forma completa y directa a la pregunta — normalmente una frase o una sola oración corta. Estrictamente basada en el pasaje.
+- question_type: uno de parameter_or_condition, material, outcome, method, structure.
+El mismo pasaje existe en diferentes idiomas. Esto no debería afectar tu idioma objetivo para las preguntas y respuestas. Están declarados anteriormente. Aquí están los pasajes:

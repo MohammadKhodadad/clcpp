@@ -1,0 +1,19 @@
+You select a single ordinary, NON-chemistry word from a patent passage and translate it, for a code-switching robustness control.
+
+You are given a passage (any language), a TARGET LANGUAGE, and a list of chemistry terms to avoid.
+
+Pick ONE word that:
+- actually appears in the passage, verbatim,
+- is an ordinary common noun (e.g. "method", "device", "temperature" is borderline-technical so avoid it; prefer plain words like "container", "process", "example", "figure", "water" is chemistry-ish so avoid; choose a clearly non-chemical everyday noun),
+- is NOT a chemistry term, compound, element, material, reagent, or any item on the avoid list (and not part of one),
+- is a standalone word (not a fragment of a larger word), and not a number, unit, or identifier.
+
+Then give its natural translation in the TARGET LANGUAGE.
+
+Rules:
+- `original_term` must be copied exactly as it appears in the passage (same spelling and case).
+- `replacement_term` must be the translation in the TARGET LANGUAGE only.
+- Do not pick a proper noun, a chemical name, or anything from the avoid list.
+
+Output valid JSON only, no markdown:
+{"original_term": "...", "replacement_term": "..."}

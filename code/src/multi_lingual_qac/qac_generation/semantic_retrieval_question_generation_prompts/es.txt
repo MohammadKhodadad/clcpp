@@ -1,0 +1,72 @@
+Eres un experto en crear preguntas de recuperación semántica para documentos de química y patentes.
+
+El contexto de origen puede estar en cualquier idioma. Las preguntas y las respuestas DEBEN estar redactadas en español. Conserva los nombres químicos, identificadores de compuestos (p. ej., «Compound 3a»), nombres comerciales, abreviaturas de reactivos y todos los valores numéricos, unidades y rangos en su forma original — no los traduzcas, redondees ni reformatees.
+
+Genera exactamente TRES pares pregunta-respuesta a partir del contexto. Las preguntas deben centrarse en los conceptos, problemas, enfoques o aplicaciones del pasaje — no en extraer hechos aislados. Cada pregunta debe leerse como la de un usuario que busca este tipo de documento sin conocer ya la terminología exacta que se usa en su interior.
+
+REGLAS FUNDAMENTALES:
+- Encuadre conceptual: Cada pregunta aborda un concepto, problema, enfoque, caso de uso o capacidad tratado en el pasaje — no un dato puntual y reducido como un valor de temperatura o un nombre de reactivo.
+- Distancia léxica: Parafrasea activamente. Un recuperador semántico debe emparejar la pregunta con el pasaje por su significado, no por coincidencia de palabras clave. Evita reutilizar el vocabulario distintivo del pasaje cuando un sinónimo o paráfrasis natural funcione. Excepción: los nombres propios, identificadores de compuestos, nombres comerciales y nombres químicos/técnicos estandarizados (p. ej., «Pd/C», «Compound 3a», nombres específicos de polímeros) deben mantenerse tal cual — de lo contrario, la pregunta resulta irrespondible desde cualquier documento.
+- Respuesta anclada: Aunque la pregunta sea conceptual, la respuesta debe ser un segmento corto y contiguo tomado del pasaje que responda directamente a la pregunta. Si no puedes señalar un segmento del pasaje que responda a la pregunta, descártala. La respuesta es la evidencia de que este pasaje es la coincidencia correcta.
+- Realismo de búsqueda: Redacta cada pregunta como la formularía alguien que busca un documento como este pero que aún no lo ha leído. Sabe qué quiere encontrar; no conoce la redacción exacta que usa el documento.
+- Sin fórmulas documentales: Nunca uses «descrito en la invención», «según el texto», «mencionado en la divulgación» ni similares. La pregunta no debe revelar que se está haciendo referencia a un documento específico.
+- Consulta autónoma para un motor de búsqueda (sin referencias al documento): cada pregunta es una consulta para un sistema de recuperación de información (RI) — la persona que la escribe NO ha visto este documento y busca ENCONTRARLO. Nunca hagas referencia al documento ni a su contenido: ni fórmulas explícitas («descrito en la invención», «según el texto», «en el pasaje»), ni NINGUNA redacción que presuponga que el lector está viendo el documento — «el ejemplo dado», «el enfoque mencionado/descrito/divulgado aquí», «qué método se proporciona». Redacta preguntas autónomas. Mal: «¿Qué ejemplo de agente se da que aumenta las ROS?» → Bien: «¿Qué agente aumenta las ROS?»
+- Intención única: Cada pregunta tiene un único objetivo informativo claro. Está bien que el objetivo sea más amplio que un solo hecho (p. ej., «cómo aborda X a Y»), pero no debe agrupar varias peticiones sin relación.
+- Diversidad: Las tres preguntas deben abordar tres aspectos distinguibles del pasaje. Cubre al menos dos de los siguientes encuadres:
+  1. Encuadre-problema: ¿qué reto o limitación aborda el pasaje?
+  2. Encuadre-solución: ¿qué enfoque, mecanismo o método se propone?
+  3. Encuadre-aplicación: ¿qué caso de uso, escenario o capacidad habilita el pasaje?
+
+Las preguntas conceptuales más amplias sobre el enfoque global son aceptables siempre que el pasaje las responda de forma clara y directa en un segmento contiguo.
+
+EJEMPLOS:
+
+Example 1
+Passage (Turkish):
+"Enerji̇ tüketi̇mi̇ düşürülmüş bi̇r tahri̇k terti̇bati Buluş hareket enerjisi üretebilen bir motorun (10) en az bir yanma odasında (11) ihtiyaç duyduğu kimyasal unsurlardan en azından bir kısmının temin edilerek enerji sarfiyatının azaltılabildiği bir tahrik tertibatı (1) ile ilgilidir. Buluşun yeniliği; bahsedilen tahrik tertibatının (1) en az bir elektroliz birimi (20) ve en az bir kontrol birimi (40) ile ilişkilendirilmiş olması, bahsedilen elektroliz biriminin (20) elektrolitin elektroliz edilmesini sağlayacak şekilde konfigüre edilmiş olması, bahsedilen kontrol biriminin (40) ise elektroliz biriminde bulunan elektroliti elektroliz edilirken yaklaşık 85-87°C aralığına kadar ısıtacak şekilde gerilim ve voltajı ayarlayabilir olması, elektroliz biriminde (20) elektroliz sonrasında elde edilen oksijen, hidrojen ve su buharının bahsedilen yanma odasına (11) karıştırılarak verilebilir olmasıdır."
+
+✓ Good (application-framed, paraphrased): "How can an engine reduce fuel consumption by generating part of its own combustion inputs?"
+  → Captures the passage's core concept. Uses "generating part of its own combustion inputs" instead of lifting "electrolysis" and "combustion chamber." The answer points to the drive arrangement producing oxygen, hydrogen, and water vapor and feeding them into the combustion chamber.
+
+✓ Good (solution-framed, paraphrased): "What role does on-board electrolysis play in supplying reactants to an engine?"
+  → "Electrolysis" is a technical term that stays; "supplying reactants to an engine" paraphrases what the passage calls "ihtiyaç duyduğu kimyasal unsurlardan ... yanma odasına ... verilebilir."
+
+✗ Bad (too extractive, keyword-heavy): "What temperature range is maintained for the electrolyte during electrolysis?"
+  → This is a fact-extraction question, not a semantic retrieval question. Belongs to the technical prompt, not this one.
+
+✗ Bad (ungrounded conceptual): "What are the environmental benefits of this fuel-saving approach?"
+  → Sounds like a retrieval question, but the passage does not discuss environmental benefits. Discard.
+
+Example 2
+Passage (French):
+"Système de surveillance de traitement d'eau décentralisé connecté à un réseau et dispositif de suivi de fonctionnement et de maintenance comprenant au moins un capteur connecté à Internet et une plateforme logicielle intégrée qui peut être utilisée par des installations de grande taille et/ou des organisations comprenant de multiples installations qui gèrent et maintiennent des systèmes de traitement d'eau potable décentralisés (p. ex. des filtres de point d'utilisation) ou des processus de traitement d'eau potable décentralisés (p. ex. un rinçage de robinet) à un ou à plusieurs emplacements. Au moins un capteur est installé en amont ou en aval d'un consommable ou d'un processus de traitement d'eau décentralisé et mesure des données d'eau, comprenant non exclusivement le volume d'eau traité dans le temps, et alerte l'utilisateur lorsque des actions de maintenance sont requises pour maintenir la qualité de l'eau."
+
+✓ Good (problem-framed, paraphrased): "How can organizations with multiple drinking water sites know when filters need servicing?"
+  → Captures the problem the passage addresses using natural search wording. Avoids lifting "consommable" or "actions de maintenance." Answer points to the sensor alerting the user when maintenance is required.
+
+✓ Good (application-framed): "Can IoT sensors monitor point-of-use water filters across many locations?"
+  → "IoT sensors" paraphrases "capteur connecté à Internet." "Point-of-use water filters" is a reused standard term (acceptable — it's the established English equivalent of "filtres de point d'utilisation"). Answer grounded in the passage's description of the monitoring system.
+
+✗ Bad (too extractive): "What does the sensor measure in the decentralized water treatment system?"
+  → Fact-extraction. Belongs to the technical prompt.
+
+✗ Bad (keyword-lifted): "What is a decentralized water treatment monitoring system connected to a network?"
+  → Near-verbatim reuse of the passage's opening phrase. Would match via keyword overlap, defeating the purpose of semantic retrieval.
+
+AUTOVERIFICACIÓN para cada pregunta antes de finalizarla:
+- ¿La pregunta aborda un concepto, problema, enfoque o aplicación — en lugar de un hecho extraído único?
+- ¿El vocabulario de la pregunta es significativamente distinto del pasaje, manteniendo el significado? (Los términos técnicos estándar y los nombres propios quedan exentos.)
+- ¿Puedo señalar un segmento contiguo del pasaje que la responda directamente? Si no, descarta.
+- ¿Alguien que busque un documento como este escribiría de forma plausible esta consulta sin haberlo leído antes?
+- ¿Podría alguien que nunca ha visto este documento escribir esta pregunta en un motor de búsqueda? No debe hacer referencia al documento, a un «ejemplo dado», ni a nada «mencionado/descrito» en él.
+- ¿Las tres preguntas cubren al menos dos encuadres (problema / solución / aplicación)?
+
+SALIDA (solo JSON válido, sin markdown):
+[
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."},
+  {"question": "...", "answer": "...", "framing": "..."}
+]
+- answer: un segmento corto y contiguo tomado del pasaje que responda directamente a la pregunta. Tan corto como sea posible, pero que aborde la pregunta por completo. En el idioma de la pregunta (español).
+- framing: uno de problem, solution, application.
+El mismo pasaje existe en diferentes idiomas. Esto no debería afectar tu idioma objetivo para las preguntas y respuestas. Están declarados anteriormente. Aquí están los pasajes:
